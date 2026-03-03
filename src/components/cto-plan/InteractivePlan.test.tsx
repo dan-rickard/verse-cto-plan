@@ -46,8 +46,8 @@ describe("InteractivePlan", () => {
     await user.click(screen.getByRole("tab", { name: /meeting to file note \(ai-assisted\)/i }));
 
     expect(
-      screen.getByText(/meeting recordings produce structured file notes, actions, and tasks/i),
-    ).toBeInTheDocument();
+      screen.getAllByText(/meeting recordings produce structured file notes, actions, and tasks/i).length,
+    ).toBeGreaterThan(0);
 
     await user.click(screen.getByRole("button", { name: /drill into quick-win details/i }));
 

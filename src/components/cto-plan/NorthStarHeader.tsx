@@ -7,6 +7,13 @@ type NorthStarHeaderProps = {
   outcomes: Outcome[];
 };
 
+const outcomeTitles = ["Workflow visibility", "Data integrity", "Secure operations"];
+
+function compactOutcome(text: string) {
+  const [lead] = text.split(" - ");
+  return lead;
+}
+
 export function NorthStarHeader({
   planTitle,
   oneLineThesis,
@@ -20,12 +27,20 @@ export function NorthStarHeader({
       </h1>
       <p className={styles.thesis}>{oneLineThesis}</p>
 
+      <div className={styles.confidenceRow} aria-label="Confidence signals">
+        <span>Business depth</span>
+        <span>Delivery rhythm</span>
+        <span>Operational control</span>
+      </div>
+
       <div className={styles.outcomeBlock}>
-        <h2 className={styles.outcomeHeading}>Day-90 outcomes</h2>
+        <h2 className={styles.outcomeHeading}>Day-90 outcomes at a glance</h2>
         <ol className={styles.outcomeList}>
-          {outcomes.map((outcome) => (
+          {outcomes.map((outcome, index) => (
             <li key={outcome.id} className={styles.outcomeItem} data-testid="outcome-item">
-              {outcome.text}
+              <p className={styles.outcomeMeta}>Outcome 0{index + 1}</p>
+              <h3 className={styles.outcomeTitle}>{outcomeTitles[index] ?? `Outcome ${index + 1}`}</h3>
+              <p className={styles.outcomeCopy}>{compactOutcome(outcome.text)}</p>
             </li>
           ))}
         </ol>

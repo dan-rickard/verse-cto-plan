@@ -83,6 +83,7 @@ export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
         <p className={styles.impact}>{activeWin.impact}</p>
         <h3 className={styles.title}>{activeWin.title}</h3>
         <p className={styles.summary}>{activeWin.summary}</p>
+        <p className={styles.presenterNote}>Talk track carries depth; this panel anchors decisions.</p>
 
         <div className={styles.signalGrid}>
           {signalSet.map((signal) => (
@@ -115,6 +116,10 @@ export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
         className={`${styles.detailPanel} ${detailsOpen ? styles.detailPanelOpen : styles.detailPanelClosed}`}
       >
         <div className={styles.detailGrid}>
+          <div className={styles.detailCard}>
+            <p className={styles.detailLabel}>Summary</p>
+            <p>{activeWin.summary}</p>
+          </div>
           <div className={styles.detailCard}>
             <p className={styles.detailLabel}>Scope</p>
             <p>{activeWin.scope}</p>

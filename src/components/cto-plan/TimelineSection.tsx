@@ -8,6 +8,29 @@ type TimelineSectionProps = {
   phases: TimelinePhase[];
 };
 
+const confidenceSignals: Record<string, Array<{ label: string; score: number }>> = {
+  "phase-30": [
+    { label: "Understanding", score: 92 },
+    { label: "Clarity", score: 88 },
+    { label: "Risk control", score: 80 },
+  ],
+  "phase-60": [
+    { label: "Delivery speed", score: 90 },
+    { label: "Adoption", score: 83 },
+    { label: "Data trust", score: 86 },
+  ],
+  "phase-90": [
+    { label: "Scale", score: 89 },
+    { label: "Governance", score: 93 },
+    { label: "Leadership confidence", score: 91 },
+  ],
+};
+
+function compactLine(text: string) {
+  const firstClause = text.split(".")[0] ?? text;
+  return firstClause.length > 95 ? `${firstClause.slice(0, 92).trim()}...` : firstClause;
+}
+
 export function TimelineSection({ phases }: TimelineSectionProps) {
   const defaultPhaseId = phases[0]?.id ?? "";
   const [activePhaseId, setActivePhaseId] = useState(defaultPhaseId);
@@ -22,13 +45,15 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
     return null;
   }
 
+  const signals = confidenceSignals[activePhase.id] ?? [];
+
   return (
     <section className={styles.section} aria-labelledby="timeline-heading">
       <div className={styles.headingRow}>
         <h2 id="timeline-heading" className={styles.heading}>
           30/60/90 timeline
         </h2>
-        <p className={styles.subtitle}>Filter the phase, then drill deeper inline.</p>
+        <p className={styles.subtitle}>Minimal view for the room. Full detail on demand.</p>
       </div>
 
       <div className={styles.filterRow} role="tablist" aria-label="Timeline phases">
@@ -58,21 +83,30 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
         <h3 className={styles.title}>{activePhase.title}</h3>
         <p className={styles.assertion}>{activePhase.assertion}</p>
 
+        <div className={styles.signalRow}>
+          {signals.map((signal) => (
+            <div key={signal.label} className={styles.signalItem}>
+              <span>{signal.label}</span>
+              <strong>{signal.score}</strong>
+            </div>
+          ))}
+        </div>
+
         <div className={styles.listGrid}>
           <div className={styles.listColumn}>
-            <p className={styles.listLabel}>Focus</p>
+            <p className={styles.listLabel}>What matters now</p>
             <ul>
-              {activePhase.focus.map((item) => (
-                <li key={item}>{item}</li>
+              {activePhase.focus.slice(0, 2).map((item) => (
+                <li key={item}>{compactLine(item)}</li>
               ))}
             </ul>
           </div>
 
           <div className={styles.listColumn}>
-            <p className={styles.listLabel}>Milestones</p>
+            <p className={styles.listLabel}>Near-term proof points</p>
             <ul>
-              {activePhase.milestones.map((item) => (
-                <li key={item}>{item}</li>
+              {activePhase.milestones.slice(0, 2).map((item) => (
+                <li key={item}>{compactLine(item)}</li>
               ))}
             </ul>
           </div>
