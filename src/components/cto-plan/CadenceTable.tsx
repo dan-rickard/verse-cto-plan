@@ -1,0 +1,39 @@
+import type { CadenceItem } from "@/types/ctoPlan";
+import styles from "./CadenceTable.module.css";
+
+type CadenceTableProps = {
+  cadence: CadenceItem[];
+};
+
+export function CadenceTable({ cadence }: CadenceTableProps) {
+  return (
+    <section className={styles.section} aria-labelledby="cadence-heading">
+      <div className={styles.headingRow}>
+        <h2 id="cadence-heading" className={styles.heading}>
+          Operating cadence
+        </h2>
+      </div>
+
+      <div className={styles.tableWrap}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th scope="col">Cadence</th>
+              <th scope="col">What</th>
+              <th scope="col">Who</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cadence.map((item) => (
+              <tr key={item.id}>
+                <td>{item.cadence}</td>
+                <td>{item.what}</td>
+                <td>{item.who}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}

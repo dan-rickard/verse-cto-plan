@@ -1,0 +1,57 @@
+.page {
+  min-height: 100dvh;
+  padding: clamp(1rem, 2.7vw, 2.4rem) clamp(0.9rem, 4vw, 4rem) 4rem;
+}
+
+.canvas {
+  margin: 0 auto;
+  max-width: 1160px;
+  display: grid;
+  gap: 1rem;
+}
+
+.reveal > * {
+  animation: rise 500ms ease both;
+}
+
+.reveal > *:nth-child(2) {
+  animation-delay: 50ms;
+}
+
+.reveal > *:nth-child(3) {
+  animation-delay: 100ms;
+}
+
+.reveal > *:nth-child(4) {
+  animation-delay: 150ms;
+}
+
+.reveal > *:nth-child(5) {
+  animation-delay: 200ms;
+}
+
+.reveal > *:nth-child(6) {
+  animation-delay: 250ms;
+}
+
+.reveal > *:nth-child(7) {
+  animation-delay: 300ms;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal > * {
+    animation: none;
+  }
+}

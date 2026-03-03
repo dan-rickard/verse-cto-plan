@@ -1,0 +1,56 @@
+.section {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(152deg, var(--surface) 12%, #eef9f7 68%, #d9f1ec 100%);
+  padding: clamp(1.4rem, 3vw, 2.5rem);
+  box-shadow: var(--shadow-soft);
+}
+
+.kicker {
+  margin-bottom: 0.6rem;
+  color: var(--accent);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+}
+
+.title {
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.85rem, 4vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.thesis {
+  margin-top: 1rem;
+  max-width: 68ch;
+  color: var(--ink-strong);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  line-height: 1.6;
+}
+
+.outcomeBlock {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.2rem;
+}
+
+.outcomeHeading {
+  font-size: 1rem;
+  color: var(--ink);
+  margin-bottom: 0.9rem;
+}
+
+.outcomeList {
+  display: grid;
+  gap: 0.75rem;
+  margin-left: 1.2rem;
+}
+
+.outcomeItem {
+  padding-left: 0.2rem;
+  color: var(--ink-strong);
+  line-height: 1.55;
+}
