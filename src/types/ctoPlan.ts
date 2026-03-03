@@ -19,7 +19,6 @@ export type TimelinePhase = {
     owners: string[];
     dependencies: string[];
     keyQuestions?: string[];
-    risks?: string[];
     notes?: string[];
   };
 };
@@ -48,13 +47,6 @@ export type Ask = {
   decider: string;
 };
 
-export type CadenceItem = {
-  id: string;
-  cadence: string;
-  what: string;
-  who: string;
-};
-
 export type DrilldownItem = {
   id: string;
   label: string;
@@ -62,16 +54,20 @@ export type DrilldownItem = {
   content: string[];
 };
 
+export type CadenceItem = {
+  id: string;
+  cadence: string;
+  what: string;
+  who: string;
+};
+
 export type CtoPlanContent = {
   planTitle: string;
   oneLineThesis: string;
   day90Outcomes: Outcome[];
-  metrics: Metric[];
   timeline: TimelinePhase[];
   earlyWins: EarlyWin[];
-  risks: Risk[];
-  asks: Ask[];
+  metrics: Metric[];
   cadence: CadenceItem[];
   message: string;
-  drilldowns: DrilldownItem[];
 };

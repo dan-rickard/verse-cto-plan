@@ -1,12 +1,9 @@
 import type {
-  Ask,
   CadenceItem,
   CtoPlanContent,
-  DrilldownItem,
   EarlyWin,
   Metric,
   Outcome,
-  Risk,
   TimelinePhase,
 } from "@/types/ctoPlan";
 
@@ -22,51 +19,6 @@ const day90Outcomes: Outcome[] = [
   {
     id: "outcome-3",
     text: "Identity and logging are real - SSO/MFA, least privilege, and auditable comms and uploads are enforced.",
-  },
-];
-
-const metrics: Metric[] = [
-  {
-    id: "metric-onboarding-visibility",
-    metric: "Onboarding stage visibility",
-    target: "100% of active onboardings trackable by stage + owner",
-    measuredBy: "Salesforce pipeline view or equivalent",
-  },
-  {
-    id: "metric-rekeying",
-    metric: "Rekeying incidents (critical fields)",
-    target: "80% reduction on top 20 fields",
-    measuredBy: "Paraplanner self-report + validation check pass rate",
-  },
-  {
-    id: "metric-revenue-exceptions",
-    metric: "Revenue exceptions surfaced",
-    target: "Weekly automated exceptions queue live",
-    measuredBy: "Count of unresolved fee mismatches with ownership",
-  },
-  {
-    id: "metric-file-note-turnaround",
-    metric: "Meeting to file note turnaround",
-    target: "Same-day structured output (AI-assisted, human-in-loop)",
-    measuredBy: "Sample audit of file note completeness + timing",
-  },
-  {
-    id: "metric-integration-alerts",
-    metric: "Integration failure alerts",
-    target: "Monitored and alerted (not silent)",
-    measuredBy: "Alert count + mean time to acknowledge",
-  },
-  {
-    id: "metric-compliance-evidence",
-    metric: "Compliance evidence logged",
-    target: "Comms + uploads consistently captured in Salesforce",
-    measuredBy: "Spot audit pass rate across 3 adviser pods",
-  },
-  {
-    id: "metric-team-sentiment",
-    metric: "Team sentiment (quick wins felt)",
-    target: 'Positive shift in "is tech helping?" pulse',
-    measuredBy: "Fortnightly one-question pulse to advisers + paraplanners",
   },
 ];
 
@@ -135,9 +87,7 @@ const timeline: TimelinePhase[] = [
         "Revex data export access",
         "Agreement on definition of done per stage",
       ],
-      risks: [
-        "If Salesforce configuration debt is deeper than expected, narrow scope to the 3 highest-friction stages first.",
-      ],
+      notes: ["Scope narrows to top 3 friction stages first if config debt is deeper than expected."],
     },
   },
   {
@@ -214,54 +164,30 @@ const earlyWins: EarlyWin[] = [
   },
 ];
 
-const risks: Risk[] = [
+const metrics: Metric[] = [
   {
-    id: "risk-1",
-    title: "Salesforce config debt is deeper than visible",
-    severity: "Medium-High",
-    summary:
-      "If the underlying data model is heavily customized in blocking ways, pilot timeline will compress.",
-    mitigation:
-      "Run a week-one Salesforce audit across objects, fields, flows, and permissions, then scope the pilot to what is achievable before rebuild proposals.",
+    id: "metric-team-sentiment",
+    metric: "Team sentiment (are the wins felt)",
+    target: "Clear positive trend in fortnightly pulse",
+    measuredBy: 'One-question pulse: "Is tech helping your day-to-day work?"',
   },
   {
-    id: "risk-2",
-    title: "Team capacity for change is constrained",
-    severity: "Medium",
-    summary:
-      "Advisers and associates are already loaded with admin and paraplanning work, increasing change fatigue risk.",
-    mitigation:
-      "Ship only changes that make daily work easier. If the new path adds effort, it does not ship.",
+    id: "metric-business-understanding",
+    metric: "Deep business understanding",
+    target: "CTO can map big picture and detailed processes as well as any pod lead",
+    measuredBy: "Validated end-to-end walkthroughs across onboarding, advice, implementation, and reviews",
   },
   {
-    id: "risk-3",
-    title: "Identifier inconsistency is worse than assumed",
-    severity: "Medium",
-    summary:
-      "If matching is mostly name-based across Salesforce, Stripe, and Revex, revenue reporting depends on manual bridging first.",
-    mitigation:
-      "Assess identifier state in week one and ship bridging keys by week 3-4 if needed.",
-  },
-];
-
-const asks: Ask[] = [
-  {
-    id: "ask-1",
-    title: "Direct access to Salesforce admin config + Revex exports",
-    why: "Truth mapping and config debt assessment cannot happen blind in week one.",
-    decider: "Ed / Corey",
+    id: "metric-data-salesforce",
+    metric: "Data project mapped + Salesforce instance live",
+    target: "Canonical source-of-truth map complete and pilot workflow live in Salesforce",
+    measuredBy: "Signed data map + active stage automation running in the pilot pod",
   },
   {
-    id: "ask-2",
-    title: "One pilot pod committed for 30 days",
-    why: "The pilot must run through real work in an operating pod, not as a side project.",
-    decider: "Ed + pod lead",
-  },
-  {
-    id: "ask-3",
-    title: "Decision on Salesforce direction before day 60",
-    why: "Retain + uplift vs alternative path changes scope materially and needs early alignment.",
-    decider: "Corey + Ed",
+    id: "metric-workflow-visibility",
+    metric: "Workflow visibility across the business",
+    target: "Stage, owner, and next action visible for active work",
+    measuredBy: "Leadership can answer " + '"where is this at?"' + " within one view",
   },
 ];
 
@@ -292,83 +218,15 @@ const cadence: CadenceItem[] = [
   },
 ];
 
-const phaseDrilldowns: DrilldownItem[] = timeline.map((phase) => {
-  const content: string[] = [
-    `Assertion: ${phase.assertion}`,
-    "Focus:",
-    ...phase.focus.map((item) => `- ${item}`),
-    "Milestones:",
-    ...phase.milestones.map((item) => `- ${item}`),
-    "Deliverables:",
-    ...phase.detail.deliverables.map((item) => `- ${item}`),
-    "Owners:",
-    ...phase.detail.owners.map((item) => `- ${item}`),
-    "Dependencies:",
-    ...phase.detail.dependencies.map((item) => `- ${item}`),
-  ];
-
-  if (phase.detail.keyQuestions?.length) {
-    content.push("Key questions:", ...phase.detail.keyQuestions.map((item) => `- ${item}`));
-  }
-
-  if (phase.detail.risks?.length) {
-    content.push("Risks:", ...phase.detail.risks.map((item) => `- ${item}`));
-  }
-
-  if (phase.detail.notes?.length) {
-    content.push("Notes:", ...phase.detail.notes.map((item) => `- ${item}`));
-  }
-
-  return {
-    id: phase.id,
-    label: `${phase.range}: ${phase.title}`,
-    kind: "phase",
-    content,
-  };
-});
-
-const winDrilldowns: DrilldownItem[] = earlyWins.map((win) => ({
-  id: win.id,
-  label: win.title,
-  kind: "win",
-  content: [
-    `Impact: ${win.impact}`,
-    `Summary: ${win.summary}`,
-    `Scope: ${win.scope}`,
-    `Done when: ${win.doneWhen}`,
-  ],
-}));
-
-const riskDrilldowns: DrilldownItem[] = risks.map((risk) => ({
-  id: risk.id,
-  label: risk.title,
-  kind: "risk",
-  content: [
-    `Severity: ${risk.severity}`,
-    `Risk: ${risk.summary}`,
-    `Mitigation: ${risk.mitigation}`,
-  ],
-}));
-
-const askDrilldowns: DrilldownItem[] = asks.map((ask) => ({
-  id: ask.id,
-  label: ask.title,
-  kind: "ask",
-  content: [`Why: ${ask.why}`, `Who decides: ${ask.decider}`],
-}));
-
 export const ctoPlanContent: CtoPlanContent = {
   planTitle: "90-Day CTO Plan - Verse Wealth",
   oneLineThesis:
     "Stabilise what works, make one operating path the easiest path, and give the team wins they can feel - not a redesign they have to survive.",
   day90Outcomes,
-  metrics,
   timeline,
   earlyWins,
-  risks,
-  asks,
+  metrics,
   cadence,
   message:
     "I understand the business, respect what has been built, and will protect delivery while making the system structurally better - with wins the team can feel in weeks, not quarters.",
-  drilldowns: [...phaseDrilldowns, ...winDrilldowns, ...riskDrilldowns, ...askDrilldowns],
 };

@@ -12,7 +12,7 @@ export function ScoreboardStrip({ metrics }: ScoreboardStripProps) {
         <h2 id="scoreboard-heading" className={styles.heading}>
           Scoreboard
         </h2>
-        <p className={styles.subtitle}>7 metrics with day-90 targets and measurement method.</p>
+        <p className={styles.subtitle}>4 key indicators to show if the plan is working.</p>
       </div>
 
       <div className={styles.grid}>
