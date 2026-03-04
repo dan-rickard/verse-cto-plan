@@ -29,30 +29,49 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.6rem;
+  position: relative;
 }
 
 .filterButton {
+  position: relative;
   border: 1px solid var(--border);
   border-radius: 0.9rem;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   text-align: left;
   padding: 0.75rem;
   min-height: 4rem;
   display: grid;
   gap: 0.2rem;
   cursor: pointer;
-  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
 .filterButton:hover {
   border-color: var(--accent);
+  background: rgba(239, 250, 247, 0.6);
 }
 
 .filterButtonActive {
   border-color: var(--accent);
-  background: #effaf7;
-  box-shadow: 0 7px 18px rgba(12, 65, 61, 0.1);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, #effaf7 0%, #e1f5f1 100%);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.filterButtonActive::after {
+  content: '';
+  position: absolute;
+  bottom: -0.42rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--accent);
+  opacity: 0.5;
 }
 
 .filterRange {
@@ -71,13 +90,27 @@
 }
 
 .featureCard {
-  margin-top: 0.75rem;
+  position: relative;
+  margin-top: 0.85rem;
   border: 1px solid var(--border);
   border-radius: 1rem;
   background: #fff;
-  padding: clamp(0.9rem, 2.6vw, 1.2rem);
+  padding: clamp(0.95rem, 2.6vw, 1.3rem);
   display: grid;
   gap: 0.7rem;
+  overflow: hidden;
+}
+
+.featureCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-deep), var(--accent));
+  opacity: 0.6;
+  border-radius: 1rem 1rem 0 0;
 }
 
 .range {
@@ -109,8 +142,15 @@
 .signalItem {
   border: 1px solid var(--border);
   border-radius: 0.7rem;
-  background: #f9fdfc;
-  padding: 0.45rem 0.52rem;
+  background: rgba(249, 253, 252, 0.9);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 0.5rem 0.58rem;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.signalMeta {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -123,7 +163,22 @@
 
 .signalItem strong {
   color: var(--accent-deep);
-  font-size: 1rem;
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.signalTrack {
+  height: 3px;
+  border-radius: 999px;
+  background: #e7eeec;
+  overflow: hidden;
+}
+
+.signalFill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-deep) 100%);
+  transition: width 500ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .listGrid {
@@ -137,6 +192,11 @@
   border-radius: 0.75rem;
   padding: 0.68rem;
   background: #fcfffe;
+  transition: border-color 0.2s ease;
+}
+
+.listColumn:hover {
+  border-color: rgba(15, 143, 131, 0.25);
 }
 
 .listLabel {
@@ -157,8 +217,9 @@
   color: var(--ink-muted);
   line-height: 1.4;
   font-size: 0.85rem;
-  border-left: 2px solid #d2ece6;
+  border-left: 2px solid var(--accent);
   padding-left: 0.45rem;
+  opacity: 0.85;
 }
 
 .detailButton {
@@ -172,6 +233,13 @@
   border-radius: 999px;
   padding: 0.42rem 0.84rem;
   cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.detailButton:hover {
+  background: #d3f0ea;
+  box-shadow: 0 4px 12px rgba(15, 143, 131, 0.12);
+  transform: translateY(-1px);
 }
 
 .detailButton:focus-visible {
@@ -251,6 +319,10 @@
     padding: 0.72rem;
   }
 
+  .filterButtonActive::after {
+    display: none;
+  }
+
   .subtitle {
     font-size: 0.88rem;
   }
@@ -286,11 +358,15 @@
 
 @media (prefers-reduced-motion: reduce) {
   .filterButton,
-  .detailPanel {
+  .detailPanel,
+  .detailButton,
+  .signalFill,
+  .listColumn {
     transition: none;
   }
 
-  .filterButtonActive {
+  .filterButtonActive,
+  .detailButton:hover {
     transform: none;
   }
 }
