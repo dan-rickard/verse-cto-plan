@@ -1,23 +1,22 @@
 :root {
-  --bg: #f0f5f4;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --bg: #f7f8fa;
   --surface: #ffffff;
   --surface-glass: rgba(255, 255, 255, 0.72);
-  --ink: #12212d;
-  --ink-strong: #1f2c39;
-  --ink-muted: #506173;
-  --accent: #0f8f83;
-  --accent-deep: #0a5c53;
-  --accent-soft: #e1f5f1;
-  --accent-glow: rgba(15, 143, 131, 0.15);
-  --accent-warm: #d4a855;
-  --accent-warm-soft: #fdf6e7;
-  --border: #d7e4e0;
-  --border-strong: #bbcfc8;
+  --ink: #1b2d5b;
+  --ink-strong: #243352;
+  --ink-muted: #6b7a8d;
+  --accent: #1b2d5b;
+  --accent-deep: #13203f;
+  --accent-soft: #eef1f7;
+  --accent-glow: rgba(27, 45, 91, 0.15);
+  --border: #dde2ea;
+  --border-strong: #c5ccdb;
   --radius-md: 0.85rem;
   --radius-lg: 1.2rem;
-  --shadow-soft: 0 1px 2px rgba(8, 35, 39, 0.04), 0 12px 30px rgba(8, 35, 39, 0.06);
-  --shadow-elevated: 0 2px 4px rgba(8, 35, 39, 0.04), 0 8px 20px rgba(8, 35, 39, 0.06), 0 24px 48px rgba(8, 35, 39, 0.08);
-  --shadow-glow: 0 0 0 1px rgba(15, 143, 131, 0.08), 0 8px 24px rgba(15, 143, 131, 0.12);
+  --shadow-soft: 0 1px 2px rgba(19, 32, 63, 0.04), 0 12px 30px rgba(19, 32, 63, 0.06);
+  --shadow-elevated: 0 2px 4px rgba(19, 32, 63, 0.04), 0 8px 20px rgba(19, 32, 63, 0.06), 0 24px 48px rgba(19, 32, 63, 0.08);
+  --shadow-glow: 0 0 0 1px rgba(27, 45, 91, 0.08), 0 8px 24px rgba(27, 45, 91, 0.12);
 }
 
 * {
@@ -46,9 +45,9 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 10% 0%, rgba(15, 143, 131, 0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 85% 15%, rgba(15, 143, 131, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 60% at 50% 90%, rgba(212, 168, 85, 0.04) 0%, transparent 50%);
+    radial-gradient(ellipse 80% 50% at 10% 0%, rgba(27, 45, 91, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% 15%, rgba(27, 45, 91, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 60% at 50% 90%, rgba(27, 45, 91, 0.03) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
   animation: gradientDrift 20s ease-in-out infinite alternate;
@@ -58,7 +57,7 @@ body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(15, 143, 131, 0.045) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(27, 45, 91, 0.035) 1px, transparent 1px);
   background-size: 28px 28px;
   pointer-events: none;
   z-index: 0;

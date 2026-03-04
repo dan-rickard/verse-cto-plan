@@ -1,7 +1,7 @@
 .section {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  background: linear-gradient(168deg, #ffffff 0%, #f3faf8 100%);
+  background: linear-gradient(168deg, #ffffff 0%, #f5f7fb 100%);
   padding: clamp(1rem, 3vw, 2rem);
   box-shadow: var(--shadow-soft);
 }
@@ -50,12 +50,12 @@
 
 .filterButton:hover {
   border-color: var(--accent);
-  background: rgba(239, 250, 247, 0.6);
+  background: rgba(238, 241, 247, 0.6);
 }
 
 .filterButtonActive {
   border-color: var(--accent);
-  background: linear-gradient(135deg, #effaf7 0%, #e1f5f1 100%);
+  background: linear-gradient(135deg, #eef1f7 0%, #e4e8f2 100%);
   box-shadow: var(--shadow-glow);
   transform: translateY(-2px);
 }
@@ -142,7 +142,7 @@
 .signalItem {
   border: 1px solid var(--border);
   border-radius: 0.7rem;
-  background: rgba(249, 253, 252, 0.9);
+  background: rgba(248, 249, 252, 0.9);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   padding: 0.5rem 0.58rem;
@@ -170,7 +170,7 @@
 .signalTrack {
   height: 3px;
   border-radius: 999px;
-  background: #e7eeec;
+  background: #e8ecf0;
   overflow: hidden;
 }
 
@@ -191,12 +191,12 @@
   border: 1px solid var(--border);
   border-radius: 0.75rem;
   padding: 0.68rem;
-  background: #fcfffe;
+  background: #fbfcfe;
   transition: border-color 0.2s ease;
 }
 
 .listColumn:hover {
-  border-color: rgba(15, 143, 131, 0.25);
+  border-color: rgba(27, 45, 91, 0.25);
 }
 
 .listLabel {
@@ -237,8 +237,8 @@
 }
 
 .detailButton:hover {
-  background: #d3f0ea;
-  box-shadow: 0 4px 12px rgba(15, 143, 131, 0.12);
+  background: #d8deea;
+  box-shadow: 0 4px 12px rgba(27, 45, 91, 0.12);
   transform: translateY(-1px);
 }
 
@@ -270,7 +270,7 @@
 .detailGrid {
   border: 1px solid var(--border);
   border-radius: 0.95rem;
-  background: linear-gradient(180deg, #ffffff 0%, #f4fbf8 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f3f5f9 100%);
   padding: 0.85rem;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

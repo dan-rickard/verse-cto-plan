@@ -54,7 +54,7 @@
   border-color: var(--accent);
   background: var(--accent-soft);
   color: var(--accent-deep);
-  box-shadow: 0 4px 12px rgba(15, 143, 131, 0.1);
+  box-shadow: 0 4px 12px rgba(27, 45, 91, 0.1);
   transform: translateY(-1px);
 }
 
@@ -65,7 +65,7 @@
   border: 1px solid var(--border);
   border-radius: 1rem;
   padding: clamp(0.95rem, 2.8vw, 1.3rem);
-  background: linear-gradient(156deg, #ffffff 0%, #eef8f6 52%, #e5f3f0 100%);
+  background: linear-gradient(156deg, #ffffff 0%, #f0f2f7 52%, #e8ecf4 100%);
   display: grid;
   gap: 0.68rem;
 }
@@ -76,7 +76,7 @@
   height: 18rem;
   right: -5rem;
   top: -6rem;
-  background: radial-gradient(circle, rgba(15, 143, 131, 0.18) 0, rgba(15, 143, 131, 0) 65%);
+  background: radial-gradient(circle, rgba(27, 45, 91, 0.18) 0, rgba(27, 45, 91, 0) 65%);
   pointer-events: none;
   animation: glowPulse 4s ease-in-out infinite alternate;
 }
@@ -89,10 +89,10 @@
 .impact {
   justify-self: start;
   border-radius: 999px;
-  background: rgba(237, 249, 245, 0.85);
+  background: rgba(238, 241, 247, 0.85);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  border: 1px solid #b5e7de;
+  border: 1px solid #c5ccdb;
   color: var(--accent-deep);
   padding: 0.2rem 0.55rem;
   font-size: 0.72rem;
@@ -141,7 +141,7 @@
 }
 
 .signalItem:hover {
-  border-color: rgba(15, 143, 131, 0.3);
+  border-color: rgba(27, 45, 91, 0.3);
 }
 
 .signalMeta {
@@ -162,7 +162,7 @@
 .signalTrack {
   height: 0.35rem;
   border-radius: 999px;
-  background: #e7eeec;
+  background: #e8ecf0;
   overflow: hidden;
 }
 
@@ -171,7 +171,7 @@
   border-radius: 999px;
   background: linear-gradient(90deg, var(--accent) 0%, var(--accent-deep) 100%);
   transition: width 500ms cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 0 8px rgba(15, 143, 131, 0.3);
+  box-shadow: 0 0 8px rgba(27, 45, 91, 0.3);
 }
 
 .detailButton {
@@ -188,8 +188,8 @@
 }
 
 .detailButton:hover {
-  background: #d3f0ea;
-  box-shadow: 0 4px 12px rgba(15, 143, 131, 0.12);
+  background: #d8deea;
+  box-shadow: 0 4px 12px rgba(27, 45, 91, 0.12);
   transform: translateY(-1px);
 }
 
@@ -237,7 +237,7 @@
 }
 
 .detailCard:hover {
-  border-color: rgba(15, 143, 131, 0.2);
+  border-color: rgba(27, 45, 91, 0.2);
   transform: translateY(-1px);
 }
 

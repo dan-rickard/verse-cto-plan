@@ -2,7 +2,7 @@
   position: relative;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  background: linear-gradient(152deg, var(--surface) 12%, #eef9f7 68%, #d9f1ec 100%);
+  background: linear-gradient(152deg, var(--surface) 12%, #f0f2f7 68%, #dee3ef 100%);
   padding: clamp(1.4rem, 3.5vw, 2.8rem);
   box-shadow: var(--shadow-elevated);
   overflow: hidden;
@@ -15,7 +15,7 @@
   right: -4rem;
   width: 22rem;
   height: 22rem;
-  background: radial-gradient(circle, rgba(15, 143, 131, 0.07) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(27, 45, 91, 0.07) 0%, transparent 65%);
   pointer-events: none;
 }
 
@@ -26,7 +26,7 @@
   left: -5rem;
   width: 18rem;
   height: 18rem;
-  background: radial-gradient(circle, rgba(212, 168, 85, 0.05) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(27, 45, 91, 0.03) 0%, transparent 65%);
   pointer-events: none;
 }
 
@@ -81,8 +81,8 @@
 }
 
 .confidenceRow span {
-  border: 1px solid #b9ddd6;
-  background: rgba(243, 252, 250, 0.8);
+  border: 1px solid #c5ccdb;
+  background: rgba(242, 244, 249, 0.8);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: var(--accent-deep);
@@ -97,7 +97,7 @@
 
 .confidenceRow span:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(15, 143, 131, 0.1);
+  box-shadow: 0 4px 12px rgba(27, 45, 91, 0.1);
 }
 
 .outcomeBlock {
@@ -134,7 +134,7 @@
 .outcomeItem:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-glow);
-  border-color: rgba(15, 143, 131, 0.2);
+  border-color: rgba(27, 45, 91, 0.2);
 }
 
 .outcomeMeta {
