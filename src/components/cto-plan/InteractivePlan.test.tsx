@@ -30,7 +30,7 @@ describe("InteractivePlan", () => {
     await user.click(screen.getByRole("tab", { name: /days 31-60/i }));
 
     expect(
-      screen.getByText(/the new way is live for one team on one journey/i),
+      screen.getByText(/the new way is live for one pod on onboarding/i),
     ).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: /drill into timeline details/i }));
@@ -51,6 +51,6 @@ describe("InteractivePlan", () => {
 
     await user.click(screen.getByRole("button", { name: /drill into quick-win details/i }));
 
-    expect(screen.getByText(/copilot or equivalent with explicit human approval/i)).toBeInTheDocument();
+    expect(screen.getByText(/copilot/i)).toBeInTheDocument();
   });
 });

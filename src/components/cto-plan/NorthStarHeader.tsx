@@ -9,11 +9,6 @@ type NorthStarHeaderProps = {
 
 const outcomeTitles = ["Workflow visibility", "Data integrity", "Secure operations"];
 
-function compactOutcome(text: string) {
-  const [lead] = text.split(" - ");
-  return lead;
-}
-
 export function NorthStarHeader({
   planTitle,
   oneLineThesis,
@@ -28,8 +23,8 @@ export function NorthStarHeader({
       <p className={styles.thesis}>{oneLineThesis}</p>
 
       <div className={styles.confidenceRow} aria-label="Confidence signals">
-        <span>Business depth</span>
-        <span>Delivery rhythm</span>
+        <span>Verse-specific diagnosis</span>
+        <span>Delivery without disruption</span>
         <span>Operational control</span>
       </div>
 
@@ -40,7 +35,7 @@ export function NorthStarHeader({
             <li key={outcome.id} className={styles.outcomeItem} data-testid="outcome-item">
               <p className={styles.outcomeMeta}>Outcome 0{index + 1}</p>
               <h3 className={styles.outcomeTitle}>{outcomeTitles[index] ?? `Outcome ${index + 1}`}</h3>
-              <p className={styles.outcomeCopy}>{compactOutcome(outcome.text)}</p>
+              <p className={styles.outcomeCopy}>{outcome.text}</p>
             </li>
           ))}
         </ol>

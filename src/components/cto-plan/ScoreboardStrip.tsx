@@ -16,7 +16,7 @@ export function ScoreboardStrip({ metrics }: ScoreboardStripProps) {
         <h2 id="scoreboard-heading" className={styles.heading}>
           Scoreboard
         </h2>
-        <p className={styles.subtitle}>4 indicators that prove confidence and delivery.</p>
+        <p className={styles.subtitle}>4 indicators that prove depth and delivery.</p>
       </div>
 
       <div className={styles.grid}>

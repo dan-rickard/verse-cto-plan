@@ -26,11 +26,6 @@ const confidenceSignals: Record<string, Array<{ label: string; score: number }>>
   ],
 };
 
-function compactLine(text: string) {
-  const firstClause = text.split(".")[0] ?? text;
-  return firstClause.length > 95 ? `${firstClause.slice(0, 92).trim()}...` : firstClause;
-}
-
 export function TimelineSection({ phases }: TimelineSectionProps) {
   const defaultPhaseId = phases[0]?.id ?? "";
   const [activePhaseId, setActivePhaseId] = useState(defaultPhaseId);
@@ -97,7 +92,7 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
             <p className={styles.listLabel}>What matters now</p>
             <ul>
               {activePhase.focus.slice(0, 2).map((item) => (
-                <li key={item}>{compactLine(item)}</li>
+                <li key={item}>{item}</li>
               ))}
             </ul>
           </div>
@@ -106,7 +101,7 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
             <p className={styles.listLabel}>Near-term proof points</p>
             <ul>
               {activePhase.milestones.slice(0, 2).map((item) => (
-                <li key={item}>{compactLine(item)}</li>
+                <li key={item}>{item}</li>
               ))}
             </ul>
           </div>
@@ -129,6 +124,24 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
         className={`${styles.detailPanel} ${detailsOpen ? styles.detailPanelOpen : styles.detailPanelClosed}`}
       >
         <div className={styles.detailGrid}>
+          <div>
+            <p className={styles.detailHeading}>Focus</p>
+            <ul className={styles.detailList}>
+              {activePhase.focus.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className={styles.detailHeading}>Milestones</p>
+            <ul className={styles.detailList}>
+              {activePhase.milestones.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
           <div>
             <p className={styles.detailHeading}>Deliverables</p>
             <ul className={styles.detailList}>

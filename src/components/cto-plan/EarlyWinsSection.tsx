@@ -53,7 +53,7 @@ export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
         <h2 id="early-wins-heading" className={styles.heading}>
           Early wins (first 2-3 weeks)
         </h2>
-        <p className={styles.subtitle}>Visual filters for what ships first and why it matters.</p>
+        <p className={styles.subtitle}>Targeted friction removers - felt daily, not &quot;strategic&quot;.</p>
       </div>
 
       <div className={styles.filterRow} role="tablist" aria-label="Quick wins">
