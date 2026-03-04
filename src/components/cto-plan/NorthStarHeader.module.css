@@ -100,7 +100,56 @@
 }
 
 @media (max-width: 860px) {
+  .confidenceRow {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .confidenceRow span {
+    width: 100%;
+    padding: 0.32rem 0.56rem;
+    line-height: 1.32;
+    text-align: center;
+  }
+
   .outcomeList {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .section {
+    padding: 0.95rem;
+  }
+
+  .kicker {
+    font-size: 0.64rem;
+  }
+
+  .title {
+    font-size: clamp(1.45rem, 8vw, 1.95rem);
+  }
+
+  .thesis {
+    margin-top: 0.72rem;
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  .outcomeHeading {
+    font-size: 0.9rem;
+  }
+
+  .outcomeItem {
+    padding: 0.68rem;
+  }
+
+  .outcomeMeta {
+    font-size: 0.62rem;
+  }
+
+  .outcomeCopy {
+    font-size: 0.81rem;
   }
 }

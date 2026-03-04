@@ -38,6 +38,7 @@
   padding: 0.42rem 0.72rem;
   font-size: 0.82rem;
   font-weight: 600;
+  min-height: 2.25rem;
   cursor: pointer;
   transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
@@ -168,7 +169,7 @@
 }
 
 .detailPanelOpen {
-  max-height: 24rem;
+  max-height: 120rem;
   opacity: 1;
   transform: translateY(0);
   margin-top: 0.72rem;
@@ -207,8 +208,67 @@
 }
 
 @media (max-width: 860px) {
+  .section {
+    padding: 0.95rem;
+  }
+
   .detailGrid {
     grid-template-columns: 1fr;
+  }
+
+  .detailPanelOpen {
+    max-height: 150rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .filterRow {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .filterButton {
+    width: 100%;
+    border-radius: 0.75rem;
+    text-align: left;
+    padding: 0.58rem 0.78rem;
+  }
+
+  .summary {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+  }
+
+  .detailButton {
+    width: 100%;
+    justify-self: stretch;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .visualCard {
+    gap: 0.56rem;
+  }
+
+  .visualGlow {
+    width: 10rem;
+    height: 10rem;
+    right: -3rem;
+    top: -3.5rem;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .presenterNote {
+    font-size: 0.78rem;
+  }
+
+  .signalMeta {
+    font-size: 0.75rem;
   }
 }
 

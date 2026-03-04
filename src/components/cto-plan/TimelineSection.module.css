@@ -20,6 +20,7 @@
 }
 
 .subtitle {
+  max-width: 38ch;
   color: var(--ink-muted);
   font-size: 0.95rem;
 }
@@ -36,6 +37,7 @@
   background: #fff;
   text-align: left;
   padding: 0.75rem;
+  min-height: 4rem;
   display: grid;
   gap: 0.2rem;
   cursor: pointer;
@@ -184,7 +186,7 @@
 }
 
 .detailPanelOpen {
-  max-height: 58rem;
+  max-height: 220rem;
   opacity: 1;
   transform: translateY(0);
   margin-top: 0.8rem;
@@ -226,12 +228,59 @@
   line-height: 1.42;
 }
 
+@media (max-width: 1024px) {
+  .signalRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 860px) {
+  .section {
+    padding: 0.95rem;
+  }
+
   .filterRow,
   .signalRow,
   .listGrid,
   .detailGrid {
     grid-template-columns: 1fr;
+  }
+
+  .filterButton {
+    min-height: 0;
+    padding: 0.72rem;
+  }
+
+  .subtitle {
+    font-size: 0.88rem;
+  }
+
+  .filterButtonActive {
+    transform: none;
+  }
+
+  .detailPanelOpen {
+    max-height: 260rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .headingRow {
+    margin-bottom: 0.85rem;
+  }
+
+  .heading {
+    font-size: 1.08rem;
+  }
+
+  .assertion {
+    font-size: 0.92rem;
+  }
+
+  .detailButton {
+    width: 100%;
+    justify-self: stretch;
+    text-align: center;
   }
 }
 

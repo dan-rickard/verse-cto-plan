@@ -26,9 +26,9 @@ export function CadenceTable({ cadence }: CadenceTableProps) {
           <tbody>
             {cadence.map((item) => (
               <tr key={item.id}>
-                <td>{item.cadence}</td>
-                <td>{item.what}</td>
-                <td>{item.who}</td>
+                <td data-label="Cadence">{item.cadence}</td>
+                <td data-label="What">{item.what}</td>
+                <td data-label="Who">{item.who}</td>
               </tr>
             ))}
           </tbody>

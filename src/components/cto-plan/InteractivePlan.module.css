@@ -1,13 +1,13 @@
 .page {
   min-height: 100dvh;
-  padding: clamp(1rem, 2.7vw, 2.4rem) clamp(0.9rem, 4vw, 4rem) 4rem;
+  padding: clamp(0.9rem, 2.7vw, 2.4rem) clamp(0.75rem, 4vw, 4rem) clamp(2.4rem, 7vw, 4rem);
 }
 
 .canvas {
   margin: 0 auto;
   max-width: 1160px;
   display: grid;
-  gap: 1rem;
+  gap: clamp(0.72rem, 1.5vw, 1rem);
 }
 
 .reveal > * {
@@ -53,5 +53,18 @@
 @media (prefers-reduced-motion: reduce) {
   .reveal > * {
     animation: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .page {
+    padding-top: 0.72rem;
+    padding-right: 0.62rem;
+    padding-bottom: 2rem;
+    padding-left: 0.62rem;
+  }
+
+  .canvas {
+    gap: 0.68rem;
   }
 }
