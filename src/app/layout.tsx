@@ -20,6 +20,19 @@ export const metadata: Metadata = {
   title: "90-Day CTO Plan - Verse Wealth",
   description:
     "90-day delivery plan focused on workflow visibility, data integrity, and security posture uplift.",
+  openGraph: {
+    title: "90-Day CTO Plan – Verse Wealth",
+    description:
+      "Workflow visibility · Data integrity · Security posture uplift. A structured 90-day delivery plan for Verse Wealth.",
+    type: "website",
+    siteName: "Verse Wealth",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "90-Day CTO Plan – Verse Wealth",
+    description:
+      "Workflow visibility · Data integrity · Security posture uplift. A structured 90-day delivery plan for Verse Wealth.",
+  },
 };
 
 export default function RootLayout({
