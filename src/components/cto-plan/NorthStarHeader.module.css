@@ -8,6 +8,15 @@
   overflow: hidden;
 }
 
+.topRow {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.85rem;
+  margin-bottom: 0.55rem;
+}
+
 .section::before {
   content: '';
   position: absolute;
@@ -32,7 +41,7 @@
 
 .kicker {
   position: relative;
-  margin-bottom: 0.55rem;
+  margin: 0;
   color: var(--accent);
   font-size: 0.7rem;
   text-transform: uppercase;
@@ -180,6 +189,12 @@
 }
 
 @media (max-width: 620px) {
+  .topRow {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.58rem;
+  }
+
   .section {
     padding: 1.1rem;
   }

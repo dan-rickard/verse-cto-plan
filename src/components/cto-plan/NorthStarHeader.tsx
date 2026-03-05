@@ -1,4 +1,5 @@
 import type { Outcome } from "@/types/ctoPlan";
+import { WatchlistLauncher } from "./WatchlistLauncher";
 import styles from "./NorthStarHeader.module.css";
 
 type NorthStarHeaderProps = {
@@ -16,7 +17,10 @@ export function NorthStarHeader({
 }: NorthStarHeaderProps) {
   return (
     <section className={styles.section} aria-labelledby="north-star-heading">
-      <p className={styles.kicker}>Executive summary</p>
+      <div className={styles.topRow}>
+        <p className={styles.kicker}>Executive summary</p>
+        <WatchlistLauncher />
+      </div>
       <h1 id="north-star-heading" className={styles.title}>
         {planTitle}
       </h1>

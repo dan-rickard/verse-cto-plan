@@ -46,10 +46,6 @@
   animation-delay: 400ms;
 }
 
-.reveal > *:nth-child(7) {
-  animation-delay: 480ms;
-}
-
 @keyframes rise {
   from {
     opacity: 0;

@@ -1,58 +1,25 @@
-.launcherSection {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--line-strong);
-  border-radius: clamp(1.08rem, 2.1vw, 1.48rem);
-  background:
-    radial-gradient(circle at 80% 18%, rgba(166, 197, 255, 0.24), transparent 50%),
-    linear-gradient(140deg, rgba(9, 19, 40, 0.92), rgba(7, 16, 35, 0.9));
-  box-shadow: 0 24px 52px rgba(5, 10, 20, 0.38);
-  padding: clamp(1rem, 2vw, 1.5rem);
-}
-
-.kicker {
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.68rem;
-  color: rgba(235, 244, 255, 0.72);
-}
-
-.heading {
-  margin: 0.42rem 0 0;
-  color: #eef6ff;
-  font-family: var(--font-display);
-  font-size: clamp(1.15rem, 2.2vw, 1.7rem);
-  line-height: 1.12;
-}
-
-.copy {
-  margin: 0.55rem 0 0;
-  max-width: 72ch;
-  color: rgba(232, 242, 255, 0.84);
-  font-size: 0.92rem;
-  line-height: 1.5;
-}
-
 .launchButton {
-  margin-top: 0.9rem;
-  border: 0;
+  border: 1px solid rgba(187, 212, 249, 0.48);
   border-radius: 0.78rem;
-  padding: 0.65rem 1rem;
+  padding: 0.52rem 0.88rem;
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.02em;
-  color: #0b1c3a;
-  background: linear-gradient(110deg, #f4e08b 0%, #d6f3ff 100%);
-  box-shadow: 0 14px 30px rgba(3, 7, 18, 0.3);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #eef6ff;
+  background:
+    radial-gradient(circle at 75% 15%, rgba(124, 172, 255, 0.2), transparent 52%),
+    linear-gradient(138deg, rgba(10, 25, 54, 0.98), rgba(8, 20, 44, 0.95));
+  box-shadow: 0 14px 28px rgba(4, 10, 24, 0.34);
+  white-space: nowrap;
   cursor: pointer;
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
 .launchButton:hover {
   transform: translateY(-1px);
-  box-shadow: 0 20px 34px rgba(3, 7, 18, 0.34);
+  box-shadow: 0 19px 34px rgba(4, 10, 24, 0.4);
 }
 
 .launchButton:focus-visible,
@@ -189,8 +156,8 @@
 }
 
 @media (max-width: 680px) {
-  .launcherSection {
-    padding: 0.84rem;
+  .launchButton {
+    width: fit-content;
   }
 
   .page {

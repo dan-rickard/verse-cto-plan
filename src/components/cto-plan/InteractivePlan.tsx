@@ -5,7 +5,6 @@ import { MessageBar } from "./MessageBar";
 import { NorthStarHeader } from "./NorthStarHeader";
 import { ScoreboardStrip } from "./ScoreboardStrip";
 import { TimelineSection } from "./TimelineSection";
-import { WatchlistLauncher } from "./WatchlistLauncher";
 import styles from "./InteractivePlan.module.css";
 
 type InteractivePlanProps = {
@@ -26,7 +25,6 @@ export function InteractivePlan({ content }: InteractivePlanProps) {
         <MessageBar message={content.message} />
         <ScoreboardStrip metrics={content.metrics} />
         <CadenceTable cadence={content.cadence} />
-        <WatchlistLauncher />
       </div>
     </main>
   );

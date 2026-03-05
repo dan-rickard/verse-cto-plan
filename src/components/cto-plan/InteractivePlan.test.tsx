@@ -25,6 +25,7 @@ describe("InteractivePlan", () => {
     expect(screen.getByRole("heading", { level: 2, name: /proof board/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2, name: /operating rhythm/i })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { level: 2, name: /risks and asks/i })).not.toBeInTheDocument();
+    expect(screen.queryByText(/need the full question set to pressure-test execution/i)).not.toBeInTheDocument();
   });
 
   it("filters timeline phases and expands inline details", async () => {
