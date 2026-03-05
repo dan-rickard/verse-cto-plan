@@ -132,7 +132,7 @@ h4,
 p,
 li,
 button {
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 @media (prefers-reduced-motion: reduce) {
