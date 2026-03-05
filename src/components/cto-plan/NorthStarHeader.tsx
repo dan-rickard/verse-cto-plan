@@ -16,7 +16,7 @@ export function NorthStarHeader({
 }: NorthStarHeaderProps) {
   return (
     <section className={styles.section} aria-labelledby="north-star-heading">
-      <p className={styles.kicker}>Room companion</p>
+      <p className={styles.kicker}>Executive summary</p>
       <h1 id="north-star-heading" className={styles.title}>
         {planTitle}
       </h1>

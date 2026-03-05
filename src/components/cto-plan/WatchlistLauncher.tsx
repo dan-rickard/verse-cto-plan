@@ -16,9 +16,9 @@ export function WatchlistLauncher() {
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <section className={styles.launcherSection} aria-labelledby="watchlist-launcher-heading">
-        <p className={styles.kicker}>Deep dive appendix</p>
+        <p className={styles.kicker}>Execution watchlist</p>
         <h2 id="watchlist-launcher-heading" className={styles.heading}>
-          Need the full question set for execution pressure-testing?
+          Need the full question set to pressure-test execution?
         </h2>
         <p className={styles.copy}>
           Open the watchlist page for detailed prompts across security, data governance, workflow,

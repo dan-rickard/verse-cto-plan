@@ -153,7 +153,7 @@ export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
         <h2 id="early-wins-heading" className={styles.heading}>
           Daily-friction removers (first 30 days)
         </h2>
-        <p className={styles.subtitle}>Use this section to punctuate concrete wins, not to repeat the script.</p>
+        <p className={styles.subtitle}>Early wins reduce daily friction and make progress visible in the first month.</p>
       </div>
 
       <div className={styles.filterRow} role="tablist" aria-label="Quick wins">
@@ -192,7 +192,7 @@ export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
         <p className={styles.impact}>{activeWin.impact}</p>
         <h3 className={styles.title}>{activeWin.title}</h3>
         <p className={styles.summary}>{activeWin.summary}</p>
-        <p className={styles.presenterNote}>Talk track carries depth; this panel anchors decisions and evidence.</p>
+        <p className={styles.presenterNote}>Each win ties to clear ownership, measurable impact, and visible evidence.</p>
 
         <div className={styles.signalGrid}>
           {signalSet.map((signal) => (

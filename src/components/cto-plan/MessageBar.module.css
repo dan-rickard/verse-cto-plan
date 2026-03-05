@@ -1,62 +1,46 @@
 .section {
   position: relative;
-  border: 1px solid transparent;
+  border: 1px solid rgba(214, 227, 255, 0.28);
   border-radius: var(--radius-lg);
   background:
-    linear-gradient(135deg, #ffffff 0%, #ecf0f7 100%) padding-box,
-    linear-gradient(135deg, var(--accent), var(--accent-deep), var(--accent)) border-box;
+    linear-gradient(128deg, rgba(27, 45, 91, 0.7) 0%, rgba(27, 45, 91, 0.58) 50%, rgba(19, 32, 63, 0.74) 100%),
+    linear-gradient(180deg, rgba(27, 45, 91, 0.08) 0%, rgba(27, 45, 91, 0.3) 100%),
+    url("/proof-break.avif") center 55% / cover no-repeat;
   padding: clamp(1.1rem, 2.6vw, 1.6rem);
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 14px 32px rgba(16, 26, 49, 0.24);
   overflow: hidden;
 }
 
 .section::before {
   content: '';
   position: absolute;
-  top: -3rem;
-  left: -3rem;
-  width: 12rem;
-  height: 12rem;
-  background: radial-gradient(circle, rgba(27, 45, 91, 0.06) 0%, transparent 65%);
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 26%, rgba(214, 227, 255, 0.24) 0%, transparent 45%),
+    linear-gradient(180deg, transparent 0%, rgba(9, 17, 37, 0.26) 100%);
   pointer-events: none;
 }
 
-.kicker {
-  color: var(--accent-deep);
-  font-size: 0.72rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.kicker::before {
-  content: '';
-  width: 1rem;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent), transparent);
-  border-radius: 1px;
-}
-
 .heading {
-  margin-top: 0.42rem;
-  color: var(--ink);
+  position: relative;
+  color: #f6f8ff;
   font-size: clamp(1rem, 1.5vw, 1.2rem);
   line-height: 1.35;
   font-weight: 600;
+  text-shadow: 0 1px 2px rgba(9, 17, 37, 0.28);
 }
 
 .copy {
+  position: relative;
   margin-top: 0.55rem;
-  color: var(--ink-strong);
+  color: #e8eeff;
   font-size: 0.93rem;
   line-height: 1.55;
   max-width: 72ch;
 }
 
 .chips {
+  position: relative;
   margin-top: 0.82rem;
   display: flex;
   gap: 0.45rem;
@@ -64,13 +48,13 @@
 }
 
 .chips span {
-  border: 1px solid #c5ccdb;
-  background: rgba(238, 241, 247, 0.85);
+  border: 1px solid rgba(214, 227, 255, 0.34);
+  background: rgba(214, 227, 255, 0.16);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-radius: 999px;
   padding: 0.2rem 0.6rem;
-  color: var(--accent-deep);
+  color: #f4f7ff;
   font-size: 0.72rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -80,7 +64,7 @@
 
 .chips span:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(27, 45, 91, 0.1);
+  box-shadow: 0 4px 10px rgba(11, 20, 41, 0.25);
 }
 
 @media (max-width: 620px) {

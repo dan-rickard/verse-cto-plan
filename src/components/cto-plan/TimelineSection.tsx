@@ -148,7 +148,7 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
         <h2 id="timeline-heading" className={styles.heading}>
           90-day operating path
         </h2>
-        <p className={styles.subtitle}>Slides carry anchors; spoken track carries implementation depth.</p>
+        <p className={styles.subtitle}>Each phase sets clear priorities, milestones, and delivery safeguards.</p>
       </div>
 
       <div className={styles.filterRow} role="tablist" aria-label="Timeline phases">

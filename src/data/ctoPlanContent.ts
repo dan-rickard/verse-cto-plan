@@ -227,7 +227,7 @@ const cadence: CadenceItem[] = [
   {
     id: "cadence-3",
     cadence: "Ongoing",
-    what: "Decision journal. Every material decision + why (so we don't re-litigate).",
+    what: "Decision journal. Every material decision + rationale (to avoid reopening settled calls).",
     who: "Decision owner",
   },
 ];
@@ -235,7 +235,7 @@ const cadence: CadenceItem[] = [
 export const ctoPlanContent: CtoPlanContent = {
   planTitle: "90-Day CTO Plan - Verse Wealth",
   oneLineThesis:
-    "This deck is a control panel for the room: decisions and proof points while the spoken track covers execution detail.",
+    "This 90-day plan aligns decisions, execution priorities, and measurable proof points.",
   day90Outcomes,
   timeline,
   earlyWins,
