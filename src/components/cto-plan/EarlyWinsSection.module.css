@@ -174,82 +174,6 @@
   box-shadow: 0 0 8px rgba(27, 45, 91, 0.3);
 }
 
-.detailButton {
-  justify-self: start;
-  border: 1px solid var(--accent);
-  background: var(--accent-soft);
-  color: var(--accent-deep);
-  font-size: 0.84rem;
-  font-weight: 700;
-  border-radius: 999px;
-  padding: 0.42rem 0.84rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.detailButton:hover {
-  background: #d8deea;
-  box-shadow: 0 4px 12px rgba(27, 45, 91, 0.12);
-  transform: translateY(-1px);
-}
-
-.detailButton:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-.detailPanel {
-  overflow: hidden;
-  transition: max-height 420ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease, transform 420ms ease;
-}
-
-.detailPanelOpen {
-  max-height: 120rem;
-  opacity: 1;
-  transform: translateY(0);
-  margin-top: 0.72rem;
-}
-
-.detailPanelClosed {
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(-8px);
-  margin-top: 0;
-}
-
-.detailGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.6rem;
-}
-
-.detailCard {
-  border: 1px solid var(--border);
-  border-radius: 0.8rem;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 0.72rem;
-  color: var(--ink-muted);
-  line-height: 1.42;
-  font-size: 0.88rem;
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-
-.detailCard:hover {
-  border-color: rgba(27, 45, 91, 0.2);
-  transform: translateY(-1px);
-}
-
-.detailLabel {
-  color: var(--ink);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  margin-bottom: 0.3rem;
-}
-
 @media (max-width: 860px) {
   .section {
     padding: 0.95rem;
@@ -257,18 +181,9 @@
 
   .filterButton,
   .impact,
-  .signalItem,
-  .detailCard {
+  .signalItem {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-  }
-
-  .detailGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .detailPanelOpen {
-    max-height: 150rem;
   }
 }
 
@@ -289,12 +204,6 @@
     display: block;
     overflow: visible;
     -webkit-line-clamp: unset;
-  }
-
-  .detailButton {
-    width: 100%;
-    justify-self: stretch;
-    text-align: center;
   }
 }
 
@@ -326,9 +235,6 @@
 @media (prefers-reduced-motion: reduce) {
   .filterButton,
   .signalFill,
-  .detailPanel,
-  .detailButton,
-  .detailCard,
   .signalItem {
     transition: none;
   }
@@ -338,9 +244,7 @@
   }
 
   .filterButton:hover,
-  .filterButtonActive,
-  .detailButton:hover,
-  .detailCard:hover {
+  .filterButtonActive {
     transform: none;
   }
 }

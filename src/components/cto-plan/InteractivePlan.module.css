@@ -72,10 +72,10 @@
   }
 
   .page {
-    padding-top: 0.72rem;
-    padding-right: 0.62rem;
-    padding-bottom: 2rem;
-    padding-left: 0.62rem;
+    padding-top: max(0.72rem, env(safe-area-inset-top));
+    padding-right: max(0.62rem, env(safe-area-inset-right));
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+    padding-left: max(0.62rem, env(safe-area-inset-left));
   }
 
   .canvas {

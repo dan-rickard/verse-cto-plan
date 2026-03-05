@@ -43,7 +43,7 @@
   position: relative;
   margin: 0;
   color: var(--accent);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.16em;
   font-weight: 700;
@@ -148,7 +148,7 @@
 
 .outcomeMeta {
   color: var(--accent);
-  font-size: 0.66rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-weight: 700;
@@ -200,7 +200,7 @@
   }
 
   .kicker {
-    font-size: 0.64rem;
+    font-size: 0.68rem;
   }
 
   .title {
@@ -222,7 +222,7 @@
   }
 
   .outcomeMeta {
-    font-size: 0.62rem;
+    font-size: 0.68rem;
   }
 
   .outcomeCopy {

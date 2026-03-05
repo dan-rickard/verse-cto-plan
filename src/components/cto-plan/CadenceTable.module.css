@@ -49,6 +49,7 @@
   color: var(--ink-muted);
   line-height: 1.45;
   font-size: 0.92rem;
+  overflow-wrap: anywhere;
   transition: background-color 0.15s ease;
 }
 
@@ -132,7 +133,7 @@
   .table td::before {
     content: attr(data-label);
     color: var(--accent-deep);
-    font-size: 0.66rem;
+    font-size: 0.72rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     font-weight: 700;

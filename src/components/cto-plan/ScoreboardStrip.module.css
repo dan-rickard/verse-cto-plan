@@ -76,7 +76,7 @@
 .label {
   margin-top: 0.6rem;
   color: var(--accent-deep);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 700;
@@ -87,6 +87,24 @@
   color: var(--ink-muted);
   font-size: 0.82rem;
   line-height: 1.42;
+}
+
+@media (max-width: 620px) {
+  .section {
+    padding: 0.95rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric {
+    font-size: 1.04rem;
+  }
+
+  .copy {
+    font-size: 0.88rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

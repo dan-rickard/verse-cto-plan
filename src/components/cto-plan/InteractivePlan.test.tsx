@@ -25,10 +25,11 @@ describe("InteractivePlan", () => {
     expect(screen.getByRole("heading", { level: 2, name: /proof board/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2, name: /operating rhythm/i })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { level: 2, name: /risks and asks/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /drill into details/i })).not.toBeInTheDocument();
     expect(screen.queryByText(/need the full question set to pressure-test execution/i)).not.toBeInTheDocument();
   });
 
-  it("filters timeline phases and expands inline details", async () => {
+  it("filters timeline phases", async () => {
     const user = userEvent.setup();
     render(<InteractivePlan content={ctoPlanContent} />);
 
@@ -37,10 +38,6 @@ describe("InteractivePlan", () => {
     expect(
       screen.getByText(/the new path is easier than old workarounds/i),
     ).toBeInTheDocument();
-
-    await user.click(screen.getByRole("button", { name: /drill into timeline details/i }));
-
-    expect(screen.getByText(/revenue object mapping/i)).toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
@@ -59,7 +56,7 @@ describe("InteractivePlan", () => {
     expect(secondTab).toHaveAttribute("aria-selected", "true");
   });
 
-  it("filters quick wins and expands inline details", async () => {
+  it("filters quick wins", async () => {
     const user = userEvent.setup();
     render(<InteractivePlan content={ctoPlanContent} />);
 
@@ -68,27 +65,17 @@ describe("InteractivePlan", () => {
     expect(
       screen.getAllByText(/meeting summaries generate structured file-note drafts and action lists/i).length,
     ).toBeGreaterThan(0);
-
-    await user.click(screen.getByRole("button", { name: /drill into quick-win details/i }));
-
-    expect(screen.getByText(/human-in-loop summary template/i)).toBeInTheDocument();
   });
 
-  it("syncs timeline and quick-win state into URL params", async () => {
+  it("syncs timeline and quick-win selection into URL params", async () => {
     const user = userEvent.setup();
     render(<InteractivePlan content={ctoPlanContent} />);
 
     await user.click(screen.getByRole("tab", { name: /days 31-60/i }));
     expect(window.location.search).toContain("phase=phase-60");
 
-    await user.click(screen.getByRole("button", { name: /drill into timeline details/i }));
-    expect(window.location.search).toContain("timelineDetails=1");
-
     await user.click(screen.getByRole("tab", { name: /meeting -> file note \+ actions/i }));
     expect(window.location.search).toContain("win=win-2");
-
-    await user.click(screen.getByRole("button", { name: /drill into quick-win details/i }));
-    expect(window.location.search).toContain("winDetails=1");
   });
 
   it("opens the CTO watchlist and returns to the plan view", async () => {

@@ -39,7 +39,6 @@ export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
   const defaultWinId = wins[0]?.id ?? "";
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [activeWinId, setActiveWinId] = useState(defaultWinId);
-  const [detailsOpen, setDetailsOpen] = useState(false);
 
   const resolveWinId = useCallback(
     (searchParams: URLSearchParams) => {
@@ -49,18 +48,14 @@ export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
     [defaultWinId, wins],
   );
 
-  const syncUrl = useCallback((winId: string, showDetails: boolean) => {
+  const syncUrl = useCallback((winId: string) => {
     if (typeof window === "undefined") {
       return;
     }
 
     const searchParams = new URLSearchParams(window.location.search);
     searchParams.set(WIN_PARAM, winId);
-    if (showDetails) {
-      searchParams.set(DETAILS_PARAM, "1");
-    } else {
-      searchParams.delete(DETAILS_PARAM);
-    }
+    searchParams.delete(DETAILS_PARAM);
 
     const query = searchParams.toString();
     const nextPath = query ? `${window.location.pathname}?${query}` : window.location.pathname;
@@ -75,7 +70,6 @@ export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
     const applyFromUrl = () => {
       const searchParams = new URLSearchParams(window.location.search);
       setActiveWinId(resolveWinId(searchParams));
-      setDetailsOpen(searchParams.get(DETAILS_PARAM) === "1");
     };
 
     applyFromUrl();
@@ -93,8 +87,7 @@ export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
   const activateWin = useCallback(
     (winId: string) => {
       setActiveWinId(winId);
-      setDetailsOpen(false);
-      syncUrl(winId, false);
+      syncUrl(winId);
     },
     [syncUrl],
   );
@@ -207,42 +200,7 @@ export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
             </div>
           ))}
         </div>
-
-        <button
-          type="button"
-          className={styles.detailButton}
-          onClick={() => {
-            const nextOpenState = !detailsOpen;
-            setDetailsOpen(nextOpenState);
-            syncUrl(activeWin.id, nextOpenState);
-          }}
-          aria-expanded={detailsOpen}
-          aria-controls="quick-wins-detail-panel"
-          aria-label="Drill into quick-win details"
-        >
-          {detailsOpen ? "Hide details" : "Drill into details"}
-        </button>
       </article>
-
-      <div
-        id="quick-wins-detail-panel"
-        className={`${styles.detailPanel} ${detailsOpen ? styles.detailPanelOpen : styles.detailPanelClosed}`}
-      >
-        <div className={styles.detailGrid}>
-          <div className={styles.detailCard}>
-            <p className={styles.detailLabel}>Summary</p>
-            <p>{activeWin.summary}</p>
-          </div>
-          <div className={styles.detailCard}>
-            <p className={styles.detailLabel}>Scope</p>
-            <p>{activeWin.scope}</p>
-          </div>
-          <div className={styles.detailCard}>
-            <p className={styles.detailLabel}>Done when</p>
-            <p>{activeWin.doneWhen}</p>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }

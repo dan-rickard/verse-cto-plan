@@ -12,6 +12,7 @@
     radial-gradient(circle at 75% 15%, rgba(124, 172, 255, 0.2), transparent 52%),
     linear-gradient(138deg, rgba(10, 25, 54, 0.98), rgba(8, 20, 44, 0.95));
   box-shadow: 0 14px 28px rgba(4, 10, 24, 0.34);
+  min-height: 2.5rem;
   white-space: nowrap;
   cursor: pointer;
   transition: transform 180ms ease, box-shadow 180ms ease;
@@ -58,6 +59,7 @@
 
 .pageInner {
   display: grid;
+  min-height: 100%;
 }
 
 .loadingState {
@@ -95,6 +97,7 @@
   font-family: var(--font-body);
   font-size: 0.82rem;
   font-weight: 600;
+  min-height: 2.5rem;
   cursor: pointer;
 }
 
@@ -110,6 +113,7 @@
   margin: 0;
   color: rgba(226, 239, 255, 0.8);
   font-size: 0.92rem;
+  line-height: 1.45;
 }
 
 .columns {
@@ -161,7 +165,32 @@
   }
 
   .page {
+    top: env(safe-area-inset-top);
+    right: env(safe-area-inset-right);
+    bottom: env(safe-area-inset-bottom);
+    left: env(safe-area-inset-left);
     border-radius: 0.82rem;
     padding: 0.72rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .launchButton {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .list {
+    font-size: 0.9rem;
+  }
+
+  .footer {
+    justify-content: stretch;
+  }
+
+  .footer .backButton {
+    width: 100%;
+    justify-self: stretch;
   }
 }

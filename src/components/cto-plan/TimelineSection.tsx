@@ -34,7 +34,6 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
   const defaultPhaseId = phases[0]?.id ?? "";
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [activePhaseId, setActivePhaseId] = useState(defaultPhaseId);
-  const [detailsOpen, setDetailsOpen] = useState(false);
 
   const resolvePhaseId = useCallback(
     (searchParams: URLSearchParams) => {
@@ -44,18 +43,14 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
     [defaultPhaseId, phases],
   );
 
-  const syncUrl = useCallback((phaseId: string, showDetails: boolean) => {
+  const syncUrl = useCallback((phaseId: string) => {
     if (typeof window === "undefined") {
       return;
     }
 
     const searchParams = new URLSearchParams(window.location.search);
     searchParams.set(PHASE_PARAM, phaseId);
-    if (showDetails) {
-      searchParams.set(DETAILS_PARAM, "1");
-    } else {
-      searchParams.delete(DETAILS_PARAM);
-    }
+    searchParams.delete(DETAILS_PARAM);
 
     const query = searchParams.toString();
     const nextPath = query ? `${window.location.pathname}?${query}` : window.location.pathname;
@@ -70,7 +65,6 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
     const applyFromUrl = () => {
       const searchParams = new URLSearchParams(window.location.search);
       setActivePhaseId(resolvePhaseId(searchParams));
-      setDetailsOpen(searchParams.get(DETAILS_PARAM) === "1");
     };
 
     applyFromUrl();
@@ -88,8 +82,7 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
   const activatePhase = useCallback(
     (phaseId: string) => {
       setActivePhaseId(phaseId);
-      setDetailsOpen(false);
-      syncUrl(phaseId, false);
+      syncUrl(phaseId);
     },
     [syncUrl],
   );
@@ -220,96 +213,7 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
             </ul>
           </div>
         </div>
-
-        <button
-          type="button"
-          className={styles.detailButton}
-          onClick={() => {
-            const nextOpenState = !detailsOpen;
-            setDetailsOpen(nextOpenState);
-            syncUrl(activePhase.id, nextOpenState);
-          }}
-          aria-expanded={detailsOpen}
-          aria-controls="timeline-detail-panel"
-          aria-label="Drill into timeline details"
-        >
-          {detailsOpen ? "Hide details" : "Drill into details"}
-        </button>
       </article>
-
-      <div
-        id="timeline-detail-panel"
-        className={`${styles.detailPanel} ${detailsOpen ? styles.detailPanelOpen : styles.detailPanelClosed}`}
-      >
-        <div className={styles.detailGrid}>
-          <div>
-            <p className={styles.detailHeading}>Focus</p>
-            <ul className={styles.detailList}>
-              {activePhase.focus.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className={styles.detailHeading}>Milestones</p>
-            <ul className={styles.detailList}>
-              {activePhase.milestones.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className={styles.detailHeading}>Deliverables</p>
-            <ul className={styles.detailList}>
-              {activePhase.detail.deliverables.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className={styles.detailHeading}>Owners</p>
-            <ul className={styles.detailList}>
-              {activePhase.detail.owners.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className={styles.detailHeading}>Dependencies</p>
-            <ul className={styles.detailList}>
-              {activePhase.detail.dependencies.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-
-          {activePhase.detail.keyQuestions?.length ? (
-            <div>
-              <p className={styles.detailHeading}>Key questions</p>
-              <ul className={styles.detailList}>
-                {activePhase.detail.keyQuestions.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-
-          {activePhase.detail.notes?.length ? (
-            <div>
-              <p className={styles.detailHeading}>Notes</p>
-              <ul className={styles.detailList}>
-                {activePhase.detail.notes.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-        </div>
-      </div>
     </section>
   );
 }
