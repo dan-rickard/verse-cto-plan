@@ -29,7 +29,7 @@ export function NorthStarHeader({
       </div>
 
       <div className={styles.outcomeBlock}>
-        <h2 className={styles.outcomeHeading}>Day-90 outcomes the room can validate</h2>
+        <h2 className={styles.outcomeHeading}>Day-90 outcomes and validation signals</h2>
         <ol className={styles.outcomeList}>
           {outcomes.map((outcome, index) => (
             <li key={outcome.id} className={styles.outcomeItem} data-testid="outcome-item">

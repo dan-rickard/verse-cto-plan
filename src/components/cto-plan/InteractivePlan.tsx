@@ -1,7 +1,6 @@
 import type { CtoPlanContent } from "@/types/ctoPlan";
 import { CadenceTable } from "./CadenceTable";
 import { EarlyWinsSection } from "./EarlyWinsSection";
-import { ImageBreakSection } from "./ImageBreakSection";
 import { MessageBar } from "./MessageBar";
 import { NorthStarHeader } from "./NorthStarHeader";
 import { ScoreboardStrip } from "./ScoreboardStrip";
@@ -25,7 +24,6 @@ export function InteractivePlan({ content }: InteractivePlanProps) {
         <TimelineSection phases={content.timeline} />
         <EarlyWinsSection wins={content.earlyWins} />
         <MessageBar message={content.message} />
-        <ImageBreakSection />
         <ScoreboardStrip metrics={content.metrics} />
         <CadenceTable cadence={content.cadence} />
         <WatchlistLauncher />
