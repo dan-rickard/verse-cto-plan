@@ -50,7 +50,6 @@ body::before {
     radial-gradient(ellipse 50% 60% at 50% 90%, rgba(27, 45, 91, 0.03) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
-  animation: gradientDrift 20s ease-in-out infinite alternate;
 }
 
 body::after {
@@ -63,6 +62,18 @@ body::after {
   z-index: 0;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 900px) {
+  body::before {
+    animation: gradientDrift 20s ease-in-out infinite alternate;
+  }
+}
+
+@media (max-width: 899px) {
+  body::after {
+    display: none;
+  }
 }
 
 @keyframes gradientDrift {

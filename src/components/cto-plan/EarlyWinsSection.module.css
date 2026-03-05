@@ -255,6 +255,14 @@
     padding: 0.95rem;
   }
 
+  .filterButton,
+  .impact,
+  .signalItem,
+  .detailCard {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   .detailGrid {
     grid-template-columns: 1fr;
   }

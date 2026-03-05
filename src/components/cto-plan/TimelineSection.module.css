@@ -307,6 +307,12 @@
     padding: 0.95rem;
   }
 
+  .filterButton,
+  .signalItem {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   .filterRow,
   .signalRow,
   .listGrid,

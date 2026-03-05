@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
+import { DM_Serif_Display } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
 const geist = localFont({
   src: "../fonts/geist-latin.woff2",
   variable: "--font-body",
+  display: "swap",
+});
+
+const display = DM_Serif_Display({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -21,19 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className={geist.variable}>{children}</body>
+      <body className={`${geist.variable} ${display.variable}`}>{children}</body>
     </html>
   );
 }

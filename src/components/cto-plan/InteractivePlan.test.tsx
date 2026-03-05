@@ -60,9 +60,9 @@ describe("InteractivePlan", () => {
 
     await user.click(screen.getByRole("button", { name: /cto watchlist/i }));
 
-    expect(screen.getByRole("heading", { level: 2, name: /cto watchlist/i })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { level: 2, name: /cto watchlist/i })).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { level: 3, name: /90 day plan - watch list/i }),
+      await screen.findByRole("heading", { level: 3, name: /90 day plan - watch list/i }),
     ).toBeInTheDocument();
 
     await user.click(screen.getAllByRole("button", { name: /back to 90-day plan/i })[0]);
