@@ -7,7 +7,7 @@ const planWatchList = [
   "What is logged today (emails, meetings, Salesforce changes), and what evidence gaps are we currently tolerating?",
   "Are devices and endpoints at an acceptable baseline (encryption, patching, local admin rights), or are there material gaps?",
   "For each core object (client details, tasks, documents, fees/revenue), what is the source of truth, and what happens when systems disagree?",
-  "Do we have a reliable way to prevent duplicates and merge records without creating chaos?",
+  "Do we have a reliable way to prevent duplicates and merge records without introducing data risk?",
   "What are the minimum required fields per stage, and where do we put validation gates so bad data does not travel downstream?",
   "Do we have consistent identifiers across Salesforce and billing/revenue tools, or are we still relying on manual name matching?",
   "For the pilot workflow, what does done mean at each stage, including exceptions, so handoffs stop being interpretive?",
@@ -27,18 +27,18 @@ const planWatchList = [
 ];
 
 const otherWatchList = [
-  "What is the full software sprawl picture, and which tools exist because Salesforce did not do the thing?",
+  "What is the full software footprint, and which tools exist because Salesforce does not meet key requirements?",
   "Where are we paying twice (licenses, overlapping workflow tools), and what can be removed without disrupting delivery?",
   "If we had to pick one home for workflow state, one for docs/knowledge, and one for automations, what would that look like in practice?",
   "Do we have one ranked backlog that the business trusts (time saved, risk reduced, revenue impact), or multiple competing lists?",
-  "What is the support intake model so requests do not arrive as DMs and drive-by conversations?",
-  "What is the line between Phase 1: stabilise and integrate and Phase 2: nicer-to-have platform upgrades?",
+  "What is the support intake model so requests do not arrive as DMs and ad hoc conversations?",
+  "What is the line between Phase 1: stabilise and integrate and Phase 2: longer-term platform upgrades?",
   "What is the minimum AI usage policy that feels empowering, not restrictive, and clearly defines what data is off-limits?",
   "Where do AI outputs live (and how are they audited), so they do not become a new shadow system?",
   "What is the repeatable human-in-loop-by-default pattern so trust grows without accidental automation risk?",
   "If we wanted to improve marketing attribution, what is the smallest measurement set that is actually reliable (and avoids vanity dashboards)?",
   "What is the longer-term CXM vision, and what is the one client-facing use case that would genuinely change the client experience (not just mirror the portal)?",
-  "What is the simplest way to keep security and compliance evidence always on without turning the team into a ticket factory?",
+  "What is the simplest way to keep security and compliance evidence always on without creating a ticket-heavy process?",
 ];
 
 export default function WatchlistOverlay() {

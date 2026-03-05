@@ -148,7 +148,7 @@ const earlyWins: EarlyWin[] = [
       "A single onboarding board with stage, owner, and next action so the team stops hunting status across tools.",
     scope: "Salesforce list view/dashboard configured around pilot stages and ownership.",
     doneWhen:
-      'Anyone can answer "where is this at?" in under 30 seconds from one Salesforce view.',
+      "Anyone can confirm current status in under 30 seconds from one Salesforce view.",
   },
   {
     id: "win-2",
