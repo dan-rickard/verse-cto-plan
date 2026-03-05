@@ -6,6 +6,7 @@ type NorthStarHeaderProps = {
   planTitle: string;
   oneLineThesis: string;
   outcomes: Outcome[];
+  showWatchlist?: boolean;
 };
 
 const outcomeTitles = ["One operating path", "Data reliability", "Enforceable governance"];
@@ -14,12 +15,13 @@ export function NorthStarHeader({
   planTitle,
   oneLineThesis,
   outcomes,
+  showWatchlist = true,
 }: NorthStarHeaderProps) {
   return (
     <section className={styles.section} aria-labelledby="north-star-heading">
       <div className={styles.topRow}>
         <p className={styles.kicker}>Executive summary</p>
-        <WatchlistLauncher />
+        {showWatchlist ? <WatchlistLauncher /> : null}
       </div>
       <h1 id="north-star-heading" className={styles.title}>
         {planTitle}

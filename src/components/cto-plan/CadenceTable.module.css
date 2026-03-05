@@ -74,9 +74,19 @@
   color: var(--ink);
 }
 
+.watchlistRow {
+  margin-top: 0.9rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
 @media (max-width: 760px) {
   .section {
     padding: 0.95rem;
+  }
+
+  .watchlistRow {
+    margin-top: 0.7rem;
   }
 
   .tableWrap {

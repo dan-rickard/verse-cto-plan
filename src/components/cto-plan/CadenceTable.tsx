@@ -1,11 +1,13 @@
 import type { CadenceItem } from "@/types/ctoPlan";
+import { WatchlistLauncher } from "./WatchlistLauncher";
 import styles from "./CadenceTable.module.css";
 
 type CadenceTableProps = {
   cadence: CadenceItem[];
+  showWatchlist?: boolean;
 };
 
-export function CadenceTable({ cadence }: CadenceTableProps) {
+export function CadenceTable({ cadence, showWatchlist = false }: CadenceTableProps) {
   return (
     <section className={styles.section} aria-labelledby="cadence-heading">
       <div className={styles.headingRow}>
@@ -34,6 +36,12 @@ export function CadenceTable({ cadence }: CadenceTableProps) {
           </tbody>
         </table>
       </div>
+
+      {showWatchlist ? (
+        <div className={styles.watchlistRow}>
+          <WatchlistLauncher />
+        </div>
+      ) : null}
     </section>
   );
 }
