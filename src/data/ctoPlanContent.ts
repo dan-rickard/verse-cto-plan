@@ -190,11 +190,11 @@ const metrics: Metric[] = [
       "Daily completeness checks plus trend of data-quality exceptions",
   },
   {
-    id: "metric-revenue-integrity",
-    metric: "Revenue integrity flow",
-    target: "Revenue import is live and exceptions are owned, aged, and resolved in queue",
+    id: "metric-chasing-reduction",
+    metric: "Manual chasing reduction",
+    target: "Blocked items are visible within 24 hours and manual chasing rate is materially lower than baseline",
     measuredBy:
-      "Exception aging, ownership coverage, and weekly closure rate",
+      "Pilot team self-report plus stale-item count from Slack digest",
   },
   {
     id: "metric-leadership-visibility",
