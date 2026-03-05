@@ -81,8 +81,13 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
         <div className={styles.signalRow}>
           {signals.map((signal) => (
             <div key={signal.label} className={styles.signalItem}>
-              <span>{signal.label}</span>
-              <strong>{signal.score}</strong>
+              <div className={styles.signalMeta}>
+                <span>{signal.label}</span>
+                <strong>{signal.score}</strong>
+              </div>
+              <div className={styles.signalTrack}>
+                <div className={styles.signalFill} style={{ width: `${signal.score}%` }} />
+              </div>
             </div>
           ))}
         </div>

@@ -1,52 +1,56 @@
 .page {
+  position: relative;
+  z-index: 1;
   min-height: 100dvh;
-  padding: clamp(0.9rem, 2.7vw, 2.4rem) clamp(0.75rem, 4vw, 4rem) clamp(2.4rem, 7vw, 4rem);
+  padding: clamp(1.2rem, 3vw, 3rem) clamp(0.75rem, 4vw, 4rem) clamp(2.4rem, 7vw, 4rem);
 }
 
 .canvas {
   margin: 0 auto;
   max-width: 1160px;
   display: grid;
-  gap: clamp(0.72rem, 1.5vw, 1rem);
+  gap: clamp(0.78rem, 1.6vw, 1.1rem);
 }
 
 .reveal > * {
-  animation: rise 500ms ease both;
+  animation: rise 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .reveal > *:nth-child(2) {
-  animation-delay: 50ms;
+  animation-delay: 80ms;
 }
 
 .reveal > *:nth-child(3) {
-  animation-delay: 100ms;
+  animation-delay: 160ms;
 }
 
 .reveal > *:nth-child(4) {
-  animation-delay: 150ms;
+  animation-delay: 240ms;
 }
 
 .reveal > *:nth-child(5) {
-  animation-delay: 200ms;
+  animation-delay: 320ms;
 }
 
 .reveal > *:nth-child(6) {
-  animation-delay: 250ms;
+  animation-delay: 400ms;
 }
 
 .reveal > *:nth-child(7) {
-  animation-delay: 300ms;
+  animation-delay: 480ms;
 }
 
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(16px) scale(0.99);
+    filter: blur(2px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
   }
 }
 
