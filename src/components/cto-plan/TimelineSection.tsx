@@ -1,12 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { KeyboardEvent } from "react";
 import type { TimelinePhase } from "@/types/ctoPlan";
 import styles from "./TimelineSection.module.css";
 
 type TimelineSectionProps = {
   phases: TimelinePhase[];
 };
+
+const PHASE_PARAM = "phase";
+const DETAILS_PARAM = "timelineDetails";
 
 const confidenceSignals: Record<string, Array<{ label: string; score: number }>> = {
   "phase-30": [
@@ -28,12 +32,108 @@ const confidenceSignals: Record<string, Array<{ label: string; score: number }>>
 
 export function TimelineSection({ phases }: TimelineSectionProps) {
   const defaultPhaseId = phases[0]?.id ?? "";
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [activePhaseId, setActivePhaseId] = useState(defaultPhaseId);
   const [detailsOpen, setDetailsOpen] = useState(false);
+
+  const resolvePhaseId = useCallback(
+    (searchParams: URLSearchParams) => {
+      const requestedPhase = searchParams.get(PHASE_PARAM);
+      return phases.some((phase) => phase.id === requestedPhase) ? requestedPhase ?? defaultPhaseId : defaultPhaseId;
+    },
+    [defaultPhaseId, phases],
+  );
+
+  const syncUrl = useCallback((phaseId: string, showDetails: boolean) => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.set(PHASE_PARAM, phaseId);
+    if (showDetails) {
+      searchParams.set(DETAILS_PARAM, "1");
+    } else {
+      searchParams.delete(DETAILS_PARAM);
+    }
+
+    const query = searchParams.toString();
+    const nextPath = query ? `${window.location.pathname}?${query}` : window.location.pathname;
+    window.history.replaceState(null, "", nextPath);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const applyFromUrl = () => {
+      const searchParams = new URLSearchParams(window.location.search);
+      setActivePhaseId(resolvePhaseId(searchParams));
+      setDetailsOpen(searchParams.get(DETAILS_PARAM) === "1");
+    };
+
+    applyFromUrl();
+    window.addEventListener("popstate", applyFromUrl);
+    return () => {
+      window.removeEventListener("popstate", applyFromUrl);
+    };
+  }, [resolvePhaseId]);
 
   const activePhase = useMemo(
     () => phases.find((phase) => phase.id === activePhaseId) ?? phases[0],
     [activePhaseId, phases],
+  );
+
+  const activatePhase = useCallback(
+    (phaseId: string) => {
+      setActivePhaseId(phaseId);
+      setDetailsOpen(false);
+      syncUrl(phaseId, false);
+    },
+    [syncUrl],
+  );
+
+  const onTabKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+      if (!phases.length) {
+        return;
+      }
+
+      let nextIndex: number | null = null;
+      switch (event.key) {
+        case "ArrowRight":
+        case "ArrowDown":
+          nextIndex = (index + 1) % phases.length;
+          break;
+        case "ArrowLeft":
+        case "ArrowUp":
+          nextIndex = (index - 1 + phases.length) % phases.length;
+          break;
+        case "Home":
+          nextIndex = 0;
+          break;
+        case "End":
+          nextIndex = phases.length - 1;
+          break;
+        default:
+          break;
+      }
+
+      if (nextIndex === null) {
+        return;
+      }
+
+      event.preventDefault();
+      const nextPhase = phases[nextIndex];
+      if (!nextPhase) {
+        return;
+      }
+
+      activatePhase(nextPhase.id);
+      tabRefs.current[nextIndex]?.focus();
+    },
+    [activatePhase, phases],
   );
 
   if (!activePhase) {
@@ -52,19 +152,23 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
       </div>
 
       <div className={styles.filterRow} role="tablist" aria-label="Timeline phases">
-        {phases.map((phase) => {
+        {phases.map((phase, index) => {
           const isActive = phase.id === activePhase.id;
           return (
             <button
               key={phase.id}
+              id={`timeline-tab-${phase.id}`}
+              ref={(button) => {
+                tabRefs.current[index] = button;
+              }}
               type="button"
               role="tab"
               aria-selected={isActive}
+              aria-controls={`timeline-panel-${phase.id}`}
+              tabIndex={isActive ? 0 : -1}
               className={`${styles.filterButton} ${isActive ? styles.filterButtonActive : ""}`}
-              onClick={() => {
-                setActivePhaseId(phase.id);
-                setDetailsOpen(false);
-              }}
+              onClick={() => activatePhase(phase.id)}
+              onKeyDown={(event) => onTabKeyDown(event, index)}
             >
               <span className={styles.filterRange}>{phase.range}</span>
               <span className={styles.filterTitle}>{phase.title}</span>
@@ -73,7 +177,12 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
         })}
       </div>
 
-      <article className={styles.featureCard}>
+      <article
+        id={`timeline-panel-${activePhase.id}`}
+        role="tabpanel"
+        aria-labelledby={`timeline-tab-${activePhase.id}`}
+        className={styles.featureCard}
+      >
         <p className={styles.range}>{activePhase.range}</p>
         <h3 className={styles.title}>{activePhase.title}</h3>
         <p className={styles.assertion}>{activePhase.assertion}</p>
@@ -115,7 +224,11 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
         <button
           type="button"
           className={styles.detailButton}
-          onClick={() => setDetailsOpen((current) => !current)}
+          onClick={() => {
+            const nextOpenState = !detailsOpen;
+            setDetailsOpen(nextOpenState);
+            syncUrl(activePhase.id, nextOpenState);
+          }}
           aria-expanded={detailsOpen}
           aria-controls="timeline-detail-panel"
           aria-label="Drill into timeline details"

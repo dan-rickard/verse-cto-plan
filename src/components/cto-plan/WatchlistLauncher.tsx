@@ -1,46 +1,20 @@
 "use client";
 
-import { lazy, Suspense, useCallback, useEffect, useRef, useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
+import { lazy, Suspense, useCallback, useState } from "react";
 import styles from "./WatchlistLauncher.module.css";
 
 const WatchlistOverlay = lazy(() => import("./WatchlistOverlay"));
 
 export function WatchlistLauncher() {
   const [open, setOpen] = useState(false);
-  const triggerRef = useRef<HTMLButtonElement>(null);
-
-  const closeWatchlist = useCallback(() => {
-    setOpen(false);
-    triggerRef.current?.focus();
-  }, []);
-
-  useEffect(() => {
-    if (!open) {
-      return;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        closeWatchlist();
-      }
-    };
-
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", onKeyDown);
-    };
-  }, [closeWatchlist, open]);
 
   const prefetchWatchlist = useCallback(() => {
     void import("./WatchlistOverlay");
   }, []);
 
   return (
-    <>
+    <Dialog.Root open={open} onOpenChange={setOpen}>
       <section className={styles.launcherSection} aria-labelledby="watchlist-launcher-heading">
         <p className={styles.kicker}>Deep dive appendix</p>
         <h2 id="watchlist-launcher-heading" className={styles.heading}>
@@ -50,33 +24,40 @@ export function WatchlistLauncher() {
           Open the watchlist page for detailed prompts across security, data governance, workflow,
           automation, and operating model design.
         </p>
-        <button
-          ref={triggerRef}
-          type="button"
-          className={styles.launchButton}
-          onPointerEnter={prefetchWatchlist}
-          onFocus={prefetchWatchlist}
-          onClick={() => setOpen(true)}
-        >
-          CTO Watchlist
-        </button>
+        <Dialog.Trigger asChild>
+          <button
+            type="button"
+            className={styles.launchButton}
+            onPointerEnter={prefetchWatchlist}
+            onFocus={prefetchWatchlist}
+          >
+            CTO Watchlist
+          </button>
+        </Dialog.Trigger>
       </section>
 
       {open ? (
-        <Suspense
-          fallback={
-            <section className={styles.overlay} role="dialog" aria-modal="true" aria-labelledby="watchlist-loading">
-              <article className={styles.page}>
-                <p id="watchlist-loading" className={styles.pageCopy}>
-                  Loading watchlist...
-                </p>
-              </article>
-            </section>
-          }
-        >
-          <WatchlistOverlay onClose={closeWatchlist} />
-        </Suspense>
+        <Dialog.Portal>
+          <Dialog.Overlay className={styles.overlay} />
+          <Dialog.Content className={styles.page} aria-label="CTO Watchlist">
+            <Suspense
+              fallback={
+                <>
+                  <Dialog.Title className={styles.visuallyHidden}>CTO Watchlist</Dialog.Title>
+                  <Dialog.Description className={styles.visuallyHidden}>
+                    Loading the CTO watchlist content.
+                  </Dialog.Description>
+                  <p className={styles.loadingState} aria-live="polite">
+                    Loading watchlist…
+                  </p>
+                </>
+              }
+            >
+              <WatchlistOverlay />
+            </Suspense>
+          </Dialog.Content>
+        </Dialog.Portal>
       ) : null}
-    </>
+    </Dialog.Root>
   );
 }

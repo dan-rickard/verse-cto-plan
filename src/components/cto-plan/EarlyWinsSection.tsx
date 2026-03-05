@@ -1,12 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { KeyboardEvent } from "react";
 import type { EarlyWin } from "@/types/ctoPlan";
 import styles from "./EarlyWinsSection.module.css";
 
 type EarlyWinsSectionProps = {
   wins: EarlyWin[];
 };
+
+const WIN_PARAM = "win";
+const DETAILS_PARAM = "winDetails";
 
 const visualSignals: Record<string, Array<{ label: string; score: number }>> = {
   "win-1": [
@@ -33,12 +37,108 @@ const visualSignals: Record<string, Array<{ label: string; score: number }>> = {
 
 export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
   const defaultWinId = wins[0]?.id ?? "";
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [activeWinId, setActiveWinId] = useState(defaultWinId);
   const [detailsOpen, setDetailsOpen] = useState(false);
+
+  const resolveWinId = useCallback(
+    (searchParams: URLSearchParams) => {
+      const requestedWin = searchParams.get(WIN_PARAM);
+      return wins.some((win) => win.id === requestedWin) ? requestedWin ?? defaultWinId : defaultWinId;
+    },
+    [defaultWinId, wins],
+  );
+
+  const syncUrl = useCallback((winId: string, showDetails: boolean) => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.set(WIN_PARAM, winId);
+    if (showDetails) {
+      searchParams.set(DETAILS_PARAM, "1");
+    } else {
+      searchParams.delete(DETAILS_PARAM);
+    }
+
+    const query = searchParams.toString();
+    const nextPath = query ? `${window.location.pathname}?${query}` : window.location.pathname;
+    window.history.replaceState(null, "", nextPath);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const applyFromUrl = () => {
+      const searchParams = new URLSearchParams(window.location.search);
+      setActiveWinId(resolveWinId(searchParams));
+      setDetailsOpen(searchParams.get(DETAILS_PARAM) === "1");
+    };
+
+    applyFromUrl();
+    window.addEventListener("popstate", applyFromUrl);
+    return () => {
+      window.removeEventListener("popstate", applyFromUrl);
+    };
+  }, [resolveWinId]);
 
   const activeWin = useMemo(
     () => wins.find((win) => win.id === activeWinId) ?? wins[0],
     [activeWinId, wins],
+  );
+
+  const activateWin = useCallback(
+    (winId: string) => {
+      setActiveWinId(winId);
+      setDetailsOpen(false);
+      syncUrl(winId, false);
+    },
+    [syncUrl],
+  );
+
+  const onTabKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+      if (!wins.length) {
+        return;
+      }
+
+      let nextIndex: number | null = null;
+      switch (event.key) {
+        case "ArrowRight":
+        case "ArrowDown":
+          nextIndex = (index + 1) % wins.length;
+          break;
+        case "ArrowLeft":
+        case "ArrowUp":
+          nextIndex = (index - 1 + wins.length) % wins.length;
+          break;
+        case "Home":
+          nextIndex = 0;
+          break;
+        case "End":
+          nextIndex = wins.length - 1;
+          break;
+        default:
+          break;
+      }
+
+      if (nextIndex === null) {
+        return;
+      }
+
+      event.preventDefault();
+      const nextWin = wins[nextIndex];
+      if (!nextWin) {
+        return;
+      }
+
+      activateWin(nextWin.id);
+      tabRefs.current[nextIndex]?.focus();
+    },
+    [activateWin, wins],
   );
 
   if (!activeWin) {
@@ -57,19 +157,23 @@ export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
       </div>
 
       <div className={styles.filterRow} role="tablist" aria-label="Quick wins">
-        {wins.map((win) => {
+        {wins.map((win, index) => {
           const isActive = win.id === activeWin.id;
           return (
             <button
               key={win.id}
+              id={`quick-win-tab-${win.id}`}
+              ref={(button) => {
+                tabRefs.current[index] = button;
+              }}
               type="button"
               role="tab"
               aria-selected={isActive}
+              aria-controls={`quick-win-panel-${win.id}`}
+              tabIndex={isActive ? 0 : -1}
               className={`${styles.filterButton} ${isActive ? styles.filterButtonActive : ""}`}
-              onClick={() => {
-                setActiveWinId(win.id);
-                setDetailsOpen(false);
-              }}
+              onClick={() => activateWin(win.id)}
+              onKeyDown={(event) => onTabKeyDown(event, index)}
             >
               {win.title}
             </button>
@@ -77,7 +181,12 @@ export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
         })}
       </div>
 
-      <article className={styles.visualCard}>
+      <article
+        id={`quick-win-panel-${activeWin.id}`}
+        role="tabpanel"
+        aria-labelledby={`quick-win-tab-${activeWin.id}`}
+        className={styles.visualCard}
+      >
         <div className={styles.visualGlow} aria-hidden="true" />
 
         <p className={styles.impact}>{activeWin.impact}</p>
@@ -102,7 +211,11 @@ export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
         <button
           type="button"
           className={styles.detailButton}
-          onClick={() => setDetailsOpen((current) => !current)}
+          onClick={() => {
+            const nextOpenState = !detailsOpen;
+            setDetailsOpen(nextOpenState);
+            syncUrl(activeWin.id, nextOpenState);
+          }}
           aria-expanded={detailsOpen}
           aria-controls="quick-wins-detail-panel"
           aria-label="Drill into quick-win details"

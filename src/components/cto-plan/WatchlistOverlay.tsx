@@ -1,8 +1,5 @@
+import * as Dialog from "@radix-ui/react-dialog";
 import styles from "./WatchlistLauncher.module.css";
-
-type WatchlistOverlayProps = {
-  onClose: () => void;
-};
 
 const planWatchList = [
   "Do we have a clean who-can-access-what model (SSO/MFA, roles, joiner/mover/leaver), and is it actually enforced?",
@@ -44,52 +41,52 @@ const otherWatchList = [
   "What is the simplest way to keep security and compliance evidence always on without turning the team into a ticket factory?",
 ];
 
-export default function WatchlistOverlay({ onClose }: WatchlistOverlayProps) {
+export default function WatchlistOverlay() {
   return (
-    <section className={styles.overlay} role="dialog" aria-modal="true" aria-labelledby="watchlist-heading">
-      <article className={styles.page}>
-        <header className={styles.header}>
-          <button type="button" className={styles.backButton} onClick={onClose}>
+    <div className={styles.pageInner}>
+      <header className={styles.header}>
+        <Dialog.Close asChild>
+          <button type="button" className={styles.backButton}>
             Back to 90-Day Plan
           </button>
-          <h2 id="watchlist-heading" className={styles.pageTitle}>
-            CTO Watchlist
-          </h2>
-          <p className={styles.pageCopy}>
-            Questions to pressure-test execution quality and reduce avoidable risk.
-          </p>
-        </header>
+        </Dialog.Close>
+        <Dialog.Title className={styles.pageTitle}>CTO Watchlist</Dialog.Title>
+        <Dialog.Description className={styles.pageCopy}>
+          Questions to pressure-test execution quality and reduce avoidable risk.
+        </Dialog.Description>
+      </header>
 
-        <div className={styles.columns}>
-          <section className={styles.card} aria-labelledby="watchlist-plan-heading">
-            <h3 id="watchlist-plan-heading" className={styles.cardTitle}>
-              90 Day Plan - Watch List (covered within the plan)
-            </h3>
-            <ul className={styles.list}>
-              {planWatchList.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </section>
+      <div className={styles.columns}>
+        <section className={styles.card} aria-labelledby="watchlist-plan-heading">
+          <h3 id="watchlist-plan-heading" className={styles.cardTitle}>
+            90 Day Plan - Watch List (covered within the plan)
+          </h3>
+          <ul className={styles.list}>
+            {planWatchList.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
 
-          <section className={styles.card} aria-labelledby="watchlist-other-heading">
-            <h3 id="watchlist-other-heading" className={styles.cardTitle}>
-              Other Items - Watch List (kept deliberately out of the 90 days)
-            </h3>
-            <ul className={styles.list}>
-              {otherWatchList.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </section>
-        </div>
+        <section className={styles.card} aria-labelledby="watchlist-other-heading">
+          <h3 id="watchlist-other-heading" className={styles.cardTitle}>
+            Other Items - Watch List (kept deliberately out of the 90 days)
+          </h3>
+          <ul className={styles.list}>
+            {otherWatchList.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
+      </div>
 
-        <div className={styles.footer}>
-          <button type="button" className={styles.backButton} onClick={onClose}>
+      <div className={styles.footer}>
+        <Dialog.Close asChild>
+          <button type="button" className={styles.backButton}>
             Back to 90-Day Plan
           </button>
-        </div>
-      </article>
-    </section>
+        </Dialog.Close>
+      </div>
+    </div>
   );
 }

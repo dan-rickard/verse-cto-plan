@@ -6,7 +6,7 @@ type ScoreboardStripProps = {
 };
 
 function compact(text: string, max = 96) {
-  return text.length > max ? `${text.slice(0, max - 1).trim()}...` : text;
+  return text.length > max ? `${text.slice(0, max - 1).trim()}…` : text;
 }
 
 export function ScoreboardStrip({ metrics }: ScoreboardStripProps) {

@@ -29,7 +29,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geist.variable} ${display.variable}`}>{children}</body>
+      <body className={`${geist.variable} ${display.variable}`}>
+        <a href="#main-content" className="skipLink">
+          Skip to Main Content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

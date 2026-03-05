@@ -208,33 +208,27 @@ const metrics: Metric[] = [
 const cadence: CadenceItem[] = [
   {
     id: "cadence-0",
-    cadence: "Opening",
-    what: "Set 90-day priority lens: client experience vs adviser capacity vs risk reduction",
-    who: "Leadership + CTO",
+    cadence: "Weekly",
+    what: "Leadership scoreboard + delivery review + decisions. Metrics, what shipped, pilot progress, blockers, and any calls needed this week.",
+    who: "Corey, Ed, Heather",
   },
   {
     id: "cadence-1",
     cadence: "Weekly",
-    what: "Pilot health review: four metrics, shipped changes, top blockers, next decisions",
-    who: "CTO + pilot pod lead + ops",
+    what: "Intake + prioritisation. New requests triaged, top 5 priorities set, trade-offs made explicit.",
+    who: "CTO + Ed",
   },
   {
     id: "cadence-2",
-    cadence: "Weekly",
-    what: "Data and integration triage: comms gaps, revenue exceptions, integration error queue",
-    who: "CTO + integration owner + finance/ops rep",
+    cadence: "Fortnightly",
+    what: "Team ship update. What shipped, what's next, what changed.",
+    who: "Whole team",
   },
   {
     id: "cadence-3",
-    cadence: "Fortnightly",
-    what: "Governance check: change control, minimum data standards, AI safe-lane adherence",
-    who: "CTO + compliance lead + Salesforce admin",
-  },
-  {
-    id: "cadence-4",
-    cadence: "Day 30/60/90",
-    what: "Phase gate decision: keep course, deepen pilot, or expand scope",
-    who: "Leadership + CTO",
+    cadence: "Ongoing",
+    what: "Decision journal. Every material decision + why (so we don't re-litigate).",
+    who: "Decision owner",
   },
 ];
 
