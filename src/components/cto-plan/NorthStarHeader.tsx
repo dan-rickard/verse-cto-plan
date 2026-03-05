@@ -7,7 +7,7 @@ type NorthStarHeaderProps = {
   outcomes: Outcome[];
 };
 
-const outcomeTitles = ["Workflow visibility", "Data integrity", "Secure operations"];
+const outcomeTitles = ["One operating path", "Data reliability", "Enforceable governance"];
 
 export function NorthStarHeader({
   planTitle,
@@ -16,20 +16,20 @@ export function NorthStarHeader({
 }: NorthStarHeaderProps) {
   return (
     <section className={styles.section} aria-labelledby="north-star-heading">
-      <p className={styles.kicker}>North star header</p>
+      <p className={styles.kicker}>Room companion</p>
       <h1 id="north-star-heading" className={styles.title}>
         {planTitle}
       </h1>
       <p className={styles.thesis}>{oneLineThesis}</p>
 
       <div className={styles.confidenceRow} aria-label="Confidence signals">
-        <span>Verse-specific diagnosis</span>
-        <span>Delivery without disruption</span>
-        <span>Operational control</span>
+        <span>Decision anchors</span>
+        <span>Proof points</span>
+        <span>Delivery protections</span>
       </div>
 
       <div className={styles.outcomeBlock}>
-        <h2 className={styles.outcomeHeading}>Day-90 outcomes at a glance</h2>
+        <h2 className={styles.outcomeHeading}>Day-90 outcomes the room can validate</h2>
         <ol className={styles.outcomeList}>
           {outcomes.map((outcome, index) => (
             <li key={outcome.id} className={styles.outcomeItem} data-testid="outcome-item">

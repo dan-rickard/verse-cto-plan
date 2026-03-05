@@ -10,7 +10,7 @@ export function CadenceTable({ cadence }: CadenceTableProps) {
     <section className={styles.section} aria-labelledby="cadence-heading">
       <div className={styles.headingRow}>
         <h2 id="cadence-heading" className={styles.heading}>
-          Operating cadence
+          Operating rhythm
         </h2>
       </div>
 

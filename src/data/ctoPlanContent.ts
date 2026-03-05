@@ -10,15 +10,15 @@ import type {
 const day90Outcomes: Outcome[] = [
   {
     id: "outcome-1",
-    text: 'No one asks "where is this at?" - onboarding, reviews, and advice production have visible stage, owner, and next action.',
+    text: "Two journeys run on one easiest path with stage, owner, and next action always visible.",
   },
   {
     id: "outcome-2",
-    text: "Client identifiers, fees, and revenue match across Salesforce, Stripe, and Revex - exceptions are surfaced weekly, not discovered biannually.",
+    text: "Client interactions and revenue are reliably captured in Salesforce, with exceptions managed as queues.",
   },
   {
     id: "outcome-3",
-    text: "Identity, permissions, and comms logging are real - not assumed.",
+    text: "Governance is enforceable: change control, minimum data standards, and a human-in-loop AI safe lane.",
   },
 ];
 
@@ -26,104 +26,114 @@ const timeline: TimelinePhase[] = [
   {
     id: "phase-30",
     range: "Days 1-30",
-    title: "Understand the business + remove first friction",
+    title: "Stabilise delivery and pick the first path",
     assertion:
-      "Before changing anything, I understand how Verse actually runs - revenue, delivery, handoffs, and where the real bottlenecks are. And the team sees the first pain removed.",
+      "Validate reality on the ground, protect live delivery, and lock one pilot journey with clear rules.",
     focus: [
-      "Follow one real client end-to-end - lead through onboarding, advice production, implementation, review, and revenue recognition - and agree where each truth lives and where it breaks.",
-      "Map pain and cost across pods. Rank work by ROI, not opinion.",
-      "Identify three constraints: the bottleneck limiting adviser capacity (70-80% admin time), the compliance evidence gap (comms logging, file notes), and the revenue/data integrity failure point (Revex-Stripe-Salesforce mismatch).",
+      "Build an end-to-end truth map from lead to revenue and confirm where each data truth lives today.",
+      "Run a process-vs-reality week with advisers, associates, paraplanners, and admin; rank top friction by time, risk, and client impact.",
+      "Choose one pilot journey (default onboarding) and define stages, owners, definition of done, and exception paths.",
     ],
     milestones: [
-      "Week 1-2: Client journey walkthrough complete across at least two pods. Source-of-truth map drafted for client records, portfolio data, fees, tasks, and documents - including what lives in Salesforce vs spreadsheets vs SharePoint vs Slack today.",
-      "Week 3-4: Pilot team and journey selected (onboarding is the default - highest volume, sets data quality foundation). Stages, definition of done, and owners defined. Minimum monitoring live for integration failures and revenue exceptions.",
+      "Week 2: truth map and friction ranking agreed with no disruption to active client delivery.",
+      "Week 4: pilot journey and stage model live, plus 2-3 quick wins felt daily by the pilot team.",
     ],
     detail: {
       deliverables: [
-        "Source-of-truth map (Salesforce, Revex, Stripe, SharePoint, spreadsheets - what's canonical, what's duplicate)",
-        "Pilot journey scope document (onboarding)",
-        "Stage definitions with owners and definition of done",
-        "Monitoring baseline (integration failures, revenue exceptions)",
+        "End-to-end truth map (client details, tasks, docs, fees, comms, revenue)",
+        "Top-10 friction backlog ranked by ROI",
+        "Pilot blueprint (stages, owners, definition of done, exceptions)",
+        "Salesforce go-live hygiene checklist (configured, unused, must-not-break)",
+        "Data 360 checkpoint with minimum viable scope decision",
       ],
-      owners: ["CTO", "One adviser pod lead", "Ops/admin representative"],
+      owners: ["CTO", "Pilot pod lead", "Ops/admin representative"],
       dependencies: [
-        "Salesforce config access (current WealthConnect/FSC state)",
-        "Revex data access + Stripe billing records",
-        "2-3 hours with each pod in the first fortnight",
-        "Clarity on what is Cloudwerx-supported vs internally configurable",
+        "Salesforce configuration and workflow access",
+        "Revex and billing data access for baseline checks",
+        "Shadowing time with each role in the first fortnight",
+        "Leadership alignment on 90-day priority lens",
       ],
       keyQuestions: [
-        "How much of the current Salesforce build is WealthConnect vs custom vs standard FSC?",
-        "What is configured vs unused today - and what did the team stop using because it was clunky?",
-        "Do consistent client identifiers exist across Salesforce, Stripe, and Revex - or is it mostly name matching?",
+        "Which outcome has priority in the next 90 days: client experience, adviser capacity, or risk reduction?",
+        "What parts of the current Salesforce setup must not break while we simplify workflow?",
+        "Do consistent client identifiers exist across Salesforce, billing, and revenue tools?",
+      ],
+      notes: [
+        "Default to onboarding for pilot unless another journey has clearly higher relief and similar rollout risk.",
       ],
     },
   },
   {
     id: "phase-60",
     range: "Days 31-60",
-    title: "Make the pilot inevitable",
+    title: "Make the pilot the default way of working",
     assertion:
-      "The new way is live for one pod on onboarding - and it is measurably faster than Slack-chasing and spreadsheet cross-referencing.",
+      "The new path is easier than old workarounds: less chasing, less rekeying, and clearer ownership.",
     focus: [
-      "Auto-create tasks by stage in Salesforce with validation checks before doc generation - so paraplanners stop chasing missing inputs.",
-      "Lock down the 10-20 fields that drive 80% of SOA merges and remove rekeying between Salesforce, spreadsheets, and Conga templates.",
-      "Establish consistent identifiers across Salesforce, Stripe, and Revex - then stand up a revenue exceptions queue with clear weekly ownership.",
+      "Automate the pilot stages with validation gates before downstream steps to stop missing data late.",
+      "Use Slack as the command surface: status nudges, alerts, and approvals tied to Salesforce stage movement.",
+      "Implement identifier strategy and first revenue ingestion run with an owned exceptions queue.",
     ],
     milestones: [
-      "Week 5-6: Automated task creation by stage live for onboarding in the pilot pod. Critical field validation active - missing data caught before SOA generation, not after.",
-      "Week 7-8: Revenue exceptions queue operational. Identifier mapping documented and first bridging keys in place. Fee mismatches surfaced weekly instead of discovered in biannual audits.",
+      "Week 6: stage automation and validation are live for pilot onboarding, with manual chasing materially reduced.",
+      "Week 8: comms capture and revenue exception handling are predictable and visibly owned.",
     ],
     detail: {
       deliverables: [
-        "Pilot workflow live in Salesforce (onboarding - stages, tasks, validation)",
-        "Field validation rules on critical SOA merge fields",
-        "Revenue exceptions queue with owner and status",
-        "Identifier mapping across Salesforce, Stripe, Revex",
+        "Pilot workflow automation in Salesforce (stages, tasks, validation)",
+        "Slack alerts/approvals/status nudges wired to stage transitions",
+        "Comms and meeting capture pattern with human approval before logging",
+        "Identifier mapping or bridging key across Salesforce, billing, and revenue systems",
+        "Revenue object mapping + first import + exceptions queue",
+        "Integration monitoring baseline (retries, alerts, owned error queue)",
       ],
-      owners: ["CTO", "Salesforce admin/config resource (Cloudwerx or internal)", "Pilot pod"],
+      owners: ["CTO", "Salesforce admin/config resource", "Integration owner", "Pilot pod"],
       dependencies: [
         "Salesforce admin capacity",
-        "Revex data export access and naming convention agreement",
-        "Agreement on definition of done per onboarding stage",
+        "Billing and revenue data access",
+        "Agreement on required fields and definition of done",
+        "Named owner for integration errors queue",
       ],
       notes: [
-        "Scope narrows to top 3 friction stages first if Salesforce config debt is deeper than expected - protect delivery over scope.",
-        "Conga value increases as Salesforce data gets richer. Don't rebuild templates until the data feeding them is clean.",
+        "Reliability over elegance: batch ingestion is acceptable before real-time.",
+        "No automation is complete without an exception queue and owner.",
       ],
     },
   },
   {
     id: "phase-90",
     range: "Days 61-90",
-    title: "Scale the pattern + lock governance",
+    title: "Scale the pattern and lock governance",
     assertion:
-      "A second journey is running the same pattern. Leadership has live operational metrics. Governance is documented, not assumed.",
+      "Scale to a second journey, run leadership on trusted metrics, and stage a disciplined CXM MVP plan.",
     focus: [
-      "Scale the workflow pattern to reviews or advice production - whichever the team ranks as highest-relief - with stage ownership and validation.",
-      "Expose operational metrics for leadership: pipeline stage, workload by owner, bottlenecks, compliance completeness, and revenue exceptions.",
-      "Lock governance: permissions aligned to least privilege, audit trail expectations documented for comms and client uploads, and change control for Salesforce config and integrations.",
+      "Apply the same stage/owner/validation pattern to a second journey (reviews or advice production).",
+      "Operate on four trusted metrics: workload, bottlenecks, compliance completeness, and revenue exception trend.",
+      "Define CXM MVP as one high-value client use case with explicit data contract and security controls.",
     ],
     milestones: [
-      "Week 9-10: Second journey live. Operational dashboard available to leadership - built in native Salesforce reports or Tableau depending on licensing decision.",
-      "Week 11-12: Identity uplift underway - SSO/MFA enforcement, least privilege review across Salesforce and ShareFile, device posture baseline. Governance document delivered.",
+      "Week 10: second journey is live under the same operating model.",
+      "Week 12: governance controls are active and CXM MVP scope is build-ready.",
     ],
     detail: {
       deliverables: [
-        "Second journey live (reviews or advice production)",
-        "Operational metrics dashboard (pipeline stage, workload, bottlenecks, compliance completeness, revenue exceptions)",
-        "Governance framework: permissions, audit trail expectations, integration and config change control",
-        "Identity and security uplift plan",
+        "Second-journey rollout pack (stages, definitions of done, automation, validation)",
+        "Operational dashboard for workload, bottlenecks, compliance completeness, revenue exceptions",
+        "CXM MVP scope + data contract (objects, sync direction, conflicts, audit trail, security, rollout)",
+        "Tool consolidation path (freeze one external tracker once trusted)",
+        "Doc-gen readiness pack (key fields and validation rules)",
+        "Governance pack (change control, minimum data standards, AI safe lane)",
       ],
-      owners: ["CTO", "Ops lead", "Compliance lead"],
+      owners: ["CTO", "Ops lead", "Compliance lead", "Client experience lead"],
       dependencies: [
-        "Leadership alignment on second journey priority",
-        "Reporting tooling decision (Tableau vs native Salesforce reports as interim)",
-        "Compliance lead input on audit trail requirements for regulated advice artefacts",
+        "Leadership decision on second journey priority",
+        "Agreement on CXM data contract boundaries",
+        "Compliance sign-off on AI safe-lane policy",
+        "Named owner for reporting cadence and quality",
       ],
       notes: [
-        "CXM exploration stays disciplined - no portal build until data contracts, sync direction, conflict handling, and security model are clear. The Lovable wireframes are thoughtful; the risk is building on messy data.",
-        "AI stays grounded: meeting-to-file-note and pre-meeting briefs (last interactions, stage, open actions, key client facts) with human approval. No autonomous CRM updates in regulated workflows.",
+        "Replace functions before retiring tools; avoid blanket bans.",
+        "CXM MVP is a disciplined scope and contract first, not a giant build.",
       ],
     },
   },
@@ -132,118 +142,111 @@ const timeline: TimelinePhase[] = [
 const earlyWins: EarlyWin[] = [
   {
     id: "win-1",
-    title: '"Where is this at?" view',
-    impact: "Confidence and friction removal",
+    title: "Pilot command view",
+    impact: "Daily operational clarity",
     summary:
-      "A single visible onboarding pipeline in Salesforce with stage, owner, and next action - so pod leads stop cross-referencing Slack, Trello, Smartsheet, and spreadsheets to answer one question.",
-    scope: "Salesforce list view or lightweight dashboard - reconfiguration of what exists, not a rebuild.",
+      "A single onboarding board with stage, owner, and next action so the team stops hunting status across tools.",
+    scope: "Salesforce list view/dashboard configured around pilot stages and ownership.",
     doneWhen:
-      'Any pod lead can answer "where is client X up to?" in one view without asking around or opening a spreadsheet.',
+      'Anyone can answer "where is this at?" in under 30 seconds from one Salesforce view.',
   },
   {
     id: "win-2",
-    title: "Revenue exceptions queue",
-    impact: "Revenue trust and anxiety reduction",
+    title: "Meeting -> file note + actions",
+    impact: "Capacity + evidence quality",
     summary:
-      "Surface fee mismatches, missing fees, and delayed billing between Revex, Stripe, and Salesforce - with ownership assigned weekly instead of discovered in biannual retrospective audits.",
+      "Meeting summaries generate structured file-note drafts and action lists, with adviser approval before anything is logged.",
     scope:
-      "Revex export into a structured exceptions list with owner, status, and resolution tracking. Naming mismatch handling documented.",
+      "Human-in-loop summary template, client record attachment, and same-day workflow in pilot.",
     doneWhen:
-      "Revenue exceptions are visible weekly with a named owner. No fee discrepancy sits unnoticed for more than 7 days.",
+      "Pilot advisers use it routinely and file-note turnaround is same-day.",
   },
   {
     id: "win-3",
-    title: "Meeting to file note (AI-assisted)",
-    impact: "Time saved and compliance evidence",
+    title: "Slack daily flow digest",
+    impact: "Faster unblock and coordination",
     summary:
-      "Meeting recordings produce structured file notes, actions, and tasks. Advisers review and approve before anything is logged - human-in-loop, no autonomous CRM updates.",
+      "Daily digest shows what moved, what is stuck, and who is waiting on input in the pilot journey.",
     scope:
-      "Copilot (already in use for summaries) extended to structured output with explicit adviser sign-off. Compliance evidence improves as a byproduct.",
+      "Automated summary from stage movement + stale-item checks, posted to a single pilot Slack channel.",
     doneWhen:
-      "2-3 advisers use it routinely. File note turnaround drops to same-day. Compliance team can see logged evidence without chasing.",
-  },
-  {
-    id: "win-4",
-    title: "Integration failure alerts",
-    impact: "Confidence and risk reduction",
-    summary:
-      "Monitoring on critical automations - Salesforce<->Stripe, Salesforce<->Revex, and high-value Zapier flows - so failures are alerted, not discovered days later by someone chasing a missing record.",
-    scope:
-      "Alerting and basic error logging for the integrations that touch revenue and client data. Not a full observability build - just enough to stop silent failures.",
-    doneWhen:
-      "No critical integration failure goes unnoticed for more than 24 hours. Failures have a named owner and documented resolution path.",
+      "Blocked items are visible within 24 hours and manual chasing clearly drops.",
   },
 ];
 
 const metrics: Metric[] = [
   {
-    id: "metric-team-sentiment",
-    metric: "Team sentiment (are the wins felt)",
-    target: "Clear positive trend in fortnightly pulse",
+    id: "metric-pilot-adoption",
+    metric: "Pilot adoption",
+    target: "At least 85% of active pilot cases run through the defined stage model",
     measuredBy:
-      'One-question pulse to advisers, paraplanners, and ops: "Is tech making your day-to-day work easier this fortnight?"',
+      "Stage, owner, and next action completeness on active pilot records",
   },
   {
-    id: "metric-business-understanding",
-    metric: "Deep business understanding",
-    target:
-      "CTO can map Verse's client journey, revenue model, and operational bottlenecks as well as any pod lead",
+    id: "metric-data-reliability",
+    metric: "Data reliability baseline",
+    target: "Latest interaction and required fields are consistently present on active pilot records",
     measuredBy:
-      "Validated end-to-end walkthroughs across onboarding, advice production, implementation, reviews, and revenue recognition - with source-of-truth agreed per data domain",
+      "Daily completeness checks plus trend of data-quality exceptions",
   },
   {
-    id: "metric-data-salesforce",
-    metric: "Data + Salesforce foundations live",
-    target:
-      "Canonical source-of-truth map complete. Pilot workflow live in Salesforce - not in Trello, Smartsheet, or a spreadsheet.",
+    id: "metric-revenue-integrity",
+    metric: "Revenue integrity flow",
+    target: "Revenue import is live and exceptions are owned, aged, and resolved in queue",
     measuredBy:
-      "Signed data map across Salesforce, Revex, Stripe, and SharePoint. Active stage automation running in the pilot pod with tasks, validation, and definition of done.",
+      "Exception aging, ownership coverage, and weekly closure rate",
   },
   {
-    id: "metric-workflow-visibility",
-    metric: "Workflow visibility across the business",
-    target: "Stage, owner, and next action visible for active client work",
+    id: "metric-leadership-visibility",
+    metric: "Leadership visibility",
+    target: "Leadership can run weekly operations from one dashboard without spreadsheet assembly",
     measuredBy:
-      'Leadership and pod leads can answer "where is this at?" in one Salesforce view - no Slack chase, no spreadsheet lookup.',
+      "Four-metric dashboard reviewed weekly with agreed bottlenecks and actions",
   },
 ];
 
 const cadence: CadenceItem[] = [
   {
+    id: "cadence-0",
+    cadence: "Opening",
+    what: "Set 90-day priority lens: client experience vs adviser capacity vs risk reduction",
+    who: "Leadership + CTO",
+  },
+  {
     id: "cadence-1",
     cadence: "Weekly",
-    what: "Scoreboard update: metrics, shipped work, blockers",
-    who: "CTO -> Ed + leadership",
+    what: "Pilot health review: four metrics, shipped changes, top blockers, next decisions",
+    who: "CTO + pilot pod lead + ops",
   },
   {
     id: "cadence-2",
     cadence: "Weekly",
-    what: "Delivery review: pilot progress, next sprint scope, team feedback",
-    who: "CTO + pilot pod",
+    what: "Data and integration triage: comms gaps, revenue exceptions, integration error queue",
+    who: "CTO + integration owner + finance/ops rep",
   },
   {
     id: "cadence-3",
     cadence: "Fortnightly",
-    what: "Roadmap review: 90-day arc check, scope adjustments, dependency flags",
-    who: "CTO + Ed",
+    what: "Governance check: change control, minimum data standards, AI safe-lane adherence",
+    who: "CTO + compliance lead + Salesforce admin",
   },
   {
     id: "cadence-4",
-    cadence: "As needed",
-    what: "Security and compliance lane: identity uplift, audit trail, incident response",
-    who: "CTO + compliance lead",
+    cadence: "Day 30/60/90",
+    what: "Phase gate decision: keep course, deepen pilot, or expand scope",
+    who: "Leadership + CTO",
   },
 ];
 
 export const ctoPlanContent: CtoPlanContent = {
   planTitle: "90-Day CTO Plan - Verse Wealth",
   oneLineThesis:
-    "Stabilise delivery, make Salesforce the easiest path - not the avoided one - and give advisers and paraplanners wins they feel in weeks, not quarters.",
+    "This deck is a control panel for the room: decisions and proof points while the spoken track covers execution detail.",
   day90Outcomes,
   timeline,
   earlyWins,
   metrics,
   cadence,
   message:
-    "I understand how Verse runs, respect what's been built to protect delivery at 45% growth, and will make the system structurally better - with wins advisers, paraplanners, and ops feel in weeks, not quarters. If the new way isn't easier for staff, it doesn't ship.",
+    "Current tooling is rational for fast growth. The next phase is repeatability without disruption: one easiest operating path, reliable data, and governance that is enforceable.",
 };

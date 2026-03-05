@@ -46,9 +46,9 @@ export function TimelineSection({ phases }: TimelineSectionProps) {
     <section className={styles.section} aria-labelledby="timeline-heading">
       <div className={styles.headingRow}>
         <h2 id="timeline-heading" className={styles.heading}>
-          30/60/90 timeline
+          90-day operating path
         </h2>
-        <p className={styles.subtitle}>Minimal view for the room. Full detail on demand.</p>
+        <p className={styles.subtitle}>Slides carry anchors; spoken track carries implementation depth.</p>
       </div>
 
       <div className={styles.filterRow} role="tablist" aria-label="Timeline phases">

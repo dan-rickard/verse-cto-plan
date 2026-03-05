@@ -51,9 +51,9 @@ export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
     <section className={styles.section} aria-labelledby="early-wins-heading">
       <div className={styles.headingRow}>
         <h2 id="early-wins-heading" className={styles.heading}>
-          Early wins (first 2-3 weeks)
+          Daily-friction removers (first 30 days)
         </h2>
-        <p className={styles.subtitle}>Targeted friction removers - felt daily, not &quot;strategic&quot;.</p>
+        <p className={styles.subtitle}>Use this section to punctuate concrete wins, not to repeat the script.</p>
       </div>
 
       <div className={styles.filterRow} role="tablist" aria-label="Quick wins">
@@ -83,7 +83,7 @@ export function EarlyWinsSection({ wins }: EarlyWinsSectionProps) {
         <p className={styles.impact}>{activeWin.impact}</p>
         <h3 className={styles.title}>{activeWin.title}</h3>
         <p className={styles.summary}>{activeWin.summary}</p>
-        <p className={styles.presenterNote}>Talk track carries depth; this panel anchors decisions.</p>
+        <p className={styles.presenterNote}>Talk track carries depth; this panel anchors decisions and evidence.</p>
 
         <div className={styles.signalGrid}>
           {signalSet.map((signal) => (

@@ -7,12 +7,12 @@ type MessageBarProps = {
 export function MessageBar({ message }: MessageBarProps) {
   return (
     <section className={styles.section} aria-label="Delivery confidence">
-      <p className={styles.kicker}>Delivery confidence</p>
-      <h2 className={styles.heading}>Understands Verse. Protects delivery. Ships change the team can feel.</h2>
+      <p className={styles.kicker}>Presentation stance</p>
+      <h2 className={styles.heading}>One easiest path. No day-one disruption.</h2>
       <p className={styles.copy}>{message}</p>
       <div className={styles.chips}>
         <span>Operationally grounded</span>
-        <span>Execution-first</span>
+        <span>Evidence-led</span>
         <span>Governance-ready</span>
       </div>
     </section>

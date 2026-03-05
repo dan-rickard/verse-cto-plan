@@ -14,9 +14,9 @@ export function ScoreboardStrip({ metrics }: ScoreboardStripProps) {
     <section className={styles.section} aria-labelledby="scoreboard-heading">
       <div className={styles.headingRow}>
         <h2 id="scoreboard-heading" className={styles.heading}>
-          Scoreboard
+          Proof board
         </h2>
-        <p className={styles.subtitle}>4 indicators that prove depth and delivery.</p>
+        <p className={styles.subtitle}>Four signals that confirm the plan is working.</p>
       </div>
 
       <div className={styles.grid}>
